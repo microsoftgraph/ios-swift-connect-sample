@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="i8i-gQ-Co8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="IFj-JH-BhL">
+            <objects>
+                <navigationController id="i8i-gQ-Co8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kqf-aY-CpY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="H7u-ul-kgg" kind="relationship" relationship="rootViewController" id="5WR-A0-z4e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kyy-UK-B24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43" y="438"/>
+        </scene>
+        <!--Microsoft Graph Connect-->
+        <scene sceneID="4p2-9u-Cnz">
+            <objects>
+                <viewController id="H7u-ul-kgg" customClass="ConnectViewController" customModule="Graph_iOS_Swift_Connect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mRc-Ck-AtF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uxp-MN-E9S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bte-p0-lsU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bT1-Do-1PC">
+                                <rect key="frame" x="271" y="285" width="59" height="30"/>
+                                <state key="normal" title="Connect"/>
+                                <connections>
+                                    <action selector="connectToGraph:" destination="H7u-ul-kgg" eventType="touchUpInside" id="MVe-lz-xFs"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ffk-iV-PbL">
+                                <rect key="frame" x="282" y="208" width="37" height="37"/>
+                                <color key="color" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bT1-Do-1PC" firstAttribute="centerX" secondItem="Bte-p0-lsU" secondAttribute="centerX" id="5bV-XJ-Ozo"/>
+                            <constraint firstItem="ffk-iV-PbL" firstAttribute="centerX" secondItem="Bte-p0-lsU" secondAttribute="centerX" id="EAb-DB-DUx"/>
+                            <constraint firstItem="bT1-Do-1PC" firstAttribute="top" secondItem="ffk-iV-PbL" secondAttribute="bottom" constant="40" id="FOP-og-xsI"/>
+                            <constraint firstItem="bT1-Do-1PC" firstAttribute="centerY" secondItem="Bte-p0-lsU" secondAttribute="centerY" id="Vu4-6m-pv1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Microsoft Graph Connect" id="i8I-q0-zd8"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ffk-iV-PbL" id="Ym4-so-CX4"/>
+                        <outlet property="connectButton" destination="bT1-Do-1PC" id="chO-Wa-HKR"/>
+                        <segue destination="sig-FU-mD5" kind="show" identifier="showSendMail" id="70l-WX-T8G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hLh-UV-CtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="438"/>
+        </scene>
+        <!--Microsoft Graph Connect-->
+        <scene sceneID="Wrd-Dl-uhC">
+            <objects>
+                <viewController id="sig-FU-mD5" customClass="SendViewController" customModule="Graph_iOS_Swift_Connect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QWN-5d-LHX"/>
+                        <viewControllerLayoutGuide type="bottom" id="rxl-r5-hbv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RxI-Mg-KSW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8m-0b-ehc">
+                                <rect key="frame" x="292" y="98" width="16" height="20"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeF-SL-ySD">
+                                <rect key="frame" x="146" y="153" width="308" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="308" id="nbF-dk-qzz"/>
+                                </constraints>
+                                <string key="text">You're now connected to Office 365. 
+Tap the Send button below to send a message from your account using the iOS Microsoft Graph SDK.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xb1-5c-20S">
+                                <rect key="frame" x="282" y="306" width="36" height="30"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendMail:" destination="sig-FU-mD5" eventType="touchUpInside" id="jmK-Zc-8qd"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qmQ-Wk-aFg">
+                                <rect key="frame" x="146" y="344" width="308" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="2SR-x3-4ht"/>
+                                </constraints>
+                                <string key="text">Status text
+This is where the status is displayed</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ymk-6E-2j5">
+                                <rect key="frame" x="146" y="244" width="308" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb1-5c-20S" firstAttribute="centerX" secondItem="RxI-Mg-KSW" secondAttribute="centerX" id="0to-t9-3M5"/>
+                            <constraint firstItem="xb1-5c-20S" firstAttribute="top" secondItem="Ymk-6E-2j5" secondAttribute="bottom" constant="32" id="7WL-uD-vhg"/>
+                            <constraint firstItem="ZeF-SL-ySD" firstAttribute="top" secondItem="M8m-0b-ehc" secondAttribute="bottom" constant="35" id="Fyf-cu-dGu"/>
+                            <constraint firstItem="Ymk-6E-2j5" firstAttribute="top" secondItem="ZeF-SL-ySD" secondAttribute="bottom" constant="8" id="Mlg-Ab-tDd"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ZeF-SL-ySD" secondAttribute="trailing" constant="125" id="Mp6-um-xik"/>
+                            <constraint firstItem="rxl-r5-hbv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qmQ-Wk-aFg" secondAttribute="bottom" constant="128" id="Rqc-R3-Ada"/>
+                            <constraint firstItem="ZeF-SL-ySD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RxI-Mg-KSW" secondAttribute="leadingMargin" constant="125" id="TkB-vL-mcC"/>
+                            <constraint firstItem="qmQ-Wk-aFg" firstAttribute="centerX" secondItem="RxI-Mg-KSW" secondAttribute="centerX" id="Vff-zz-JqO"/>
+                            <constraint firstItem="Ymk-6E-2j5" firstAttribute="centerX" secondItem="RxI-Mg-KSW" secondAttribute="centerX" id="XWG-1Z-iqF"/>
+                            <constraint firstItem="qmQ-Wk-aFg" firstAttribute="width" secondItem="Ymk-6E-2j5" secondAttribute="width" id="fEQ-aY-0a1"/>
+                            <constraint firstItem="qmQ-Wk-aFg" firstAttribute="centerY" secondItem="RxI-Mg-KSW" secondAttribute="centerY" id="iDE-nH-bXa"/>
+                            <constraint firstItem="ZeF-SL-ySD" firstAttribute="centerX" secondItem="RxI-Mg-KSW" secondAttribute="centerX" id="lGU-jC-P6K"/>
+                            <constraint firstItem="M8m-0b-ehc" firstAttribute="top" secondItem="QWN-5d-LHX" secondAttribute="bottom" constant="34" id="lOe-Vu-8ib"/>
+                            <constraint firstItem="Ymk-6E-2j5" firstAttribute="width" secondItem="ZeF-SL-ySD" secondAttribute="width" id="u20-I6-Sa6"/>
+                            <constraint firstItem="qmQ-Wk-aFg" firstAttribute="top" secondItem="xb1-5c-20S" secondAttribute="bottom" constant="8" id="uu3-gd-Ssd"/>
+                            <constraint firstItem="M8m-0b-ehc" firstAttribute="centerX" secondItem="RxI-Mg-KSW" secondAttribute="centerX" id="zfl-Go-huI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Mp6-um-xik"/>
+                                <exclude reference="TkB-vL-mcC"/>
+                                <exclude reference="iDE-nH-bXa"/>
+                                <exclude reference="Rqc-R3-Ada"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Microsoft Graph Connect" id="L6P-de-90B">
+                        <barButtonItem key="rightBarButtonItem" title="Disconnect" id="nim-p3-Iye">
+                            <connections>
+                                <action selector="disconnectGraph:" destination="sig-FU-mD5" id="Njk-k0-enN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="Ymk-6E-2j5" id="s4s-mC-7X3"/>
+                        <outlet property="headerLabel" destination="M8m-0b-ehc" id="e9D-C7-P3R"/>
+                        <outlet property="sendButton" destination="xb1-5c-20S" id="W1I-yU-ATz"/>
+                        <outlet property="statusTextView" destination="qmQ-Wk-aFg" id="3no-x2-jLa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWZ-dM-5HE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1462" y="438"/>
+        </scene>
+    </scenes>
+</document>
