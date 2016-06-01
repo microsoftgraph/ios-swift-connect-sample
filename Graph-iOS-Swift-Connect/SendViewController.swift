@@ -33,7 +33,7 @@ class SendViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: true)
-        }
+    }
 }
 
 
@@ -54,10 +54,16 @@ private extension SendViewController {
                 (response: [NSObject : AnyObject]?, error: NSError?) in
                 if let nsError = error {
                     print("Error", nsError.localizedDescription)
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.statusTextView.text = "Send mail has failed. Please look at the log for more details."
+                    })
                     
                 }
                 else {
                     print("Sent!")
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.statusTextView.text = "Mail sent successfully."
+                    })
                 }
             })
         }
