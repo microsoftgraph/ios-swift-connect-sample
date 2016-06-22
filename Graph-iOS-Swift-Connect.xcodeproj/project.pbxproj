@@ -10,6 +10,7 @@
 		25E0E8BFA25C5D2AB88753B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E3928AF04A3177682A718D /* libPods.a */; };
 		9683C8191CE4545000ADD241 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8181CE4545000ADD241 /* Authentication.swift */; };
 		968F3AC81CE339AF00EC4DFC /* EmailBody.html in Resources */ = {isa = PBXBuildFile; fileRef = 968F3AC71CE339AF00EC4DFC /* EmailBody.html */; };
+		9697B5951D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */; };
 		96993F381CE13E9200725E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F371CE13E9200725E65 /* AppDelegate.swift */; };
 		96993F3D1CE13E9200725E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96993F3B1CE13E9200725E65 /* Main.storyboard */; };
 		96993F3F1CE13E9200725E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96993F3E1CE13E9200725E65 /* Assets.xcassets */; };
@@ -19,10 +20,23 @@
 		96993F541CE1E36500725E65 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F531CE1E36500725E65 /* SendViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9697B5971D1B0843004F8396 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96993F2C1CE13E9200725E65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96993F331CE13E9200725E65;
+			remoteInfo = "Graph-iOS-Swift-Connect";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		86E20F979AFC71C434FEB4CA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9683C8181CE4545000ADD241 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		968F3AC71CE339AF00EC4DFC /* EmailBody.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailBody.html; sourceTree = "<group>"; };
+		9697B5921D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Graph-iOS-Swift-ConnectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph_iOS_Swift_ConnectTests.swift; sourceTree = "<group>"; };
+		9697B5961D1B0843004F8396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96993F341CE13E9200725E65 /* Graph-iOS-Swift-Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Graph-iOS-Swift-Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96993F371CE13E9200725E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96993F3C1CE13E9200725E65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,6 +52,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9697B58F1D1B0842004F8396 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96993F311CE13E9200725E65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,10 +125,20 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
+		9697B5931D1B0843004F8396 /* Graph-iOS-Swift-ConnectTests */ = {
+			isa = PBXGroup;
+			children = (
+				9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */,
+				9697B5961D1B0843004F8396 /* Info.plist */,
+			);
+			path = "Graph-iOS-Swift-ConnectTests";
+			sourceTree = "<group>";
+		};
 		96993F2B1CE13E9200725E65 = {
 			isa = PBXGroup;
 			children = (
 				96993F361CE13E9200725E65 /* Graph-iOS-Swift-Connect */,
+				9697B5931D1B0843004F8396 /* Graph-iOS-Swift-ConnectTests */,
 				96993F351CE13E9200725E65 /* Products */,
 				7ECB83A700C846A8074BE959 /* Pods */,
 				DBA662E3610DDC64C39A2AB6 /* Frameworks */,
@@ -118,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				96993F341CE13E9200725E65 /* Graph-iOS-Swift-Connect.app */,
+				9697B5921D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +177,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9697B5911D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9697B59B1D1B0843004F8396 /* Build configuration list for PBXNativeTarget "Graph-iOS-Swift-ConnectTests" */;
+			buildPhases = (
+				9697B58E1D1B0842004F8396 /* Sources */,
+				9697B58F1D1B0842004F8396 /* Frameworks */,
+				9697B5901D1B0842004F8396 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9697B5981D1B0843004F8396 /* PBXTargetDependency */,
+			);
+			name = "Graph-iOS-Swift-ConnectTests";
+			productName = "Graph-iOS-Swift-ConnectTests";
+			productReference = 9697B5921D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		96993F331CE13E9200725E65 /* Graph-iOS-Swift-Connect */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96993F461CE13E9200725E65 /* Build configuration list for PBXNativeTarget "Graph-iOS-Swift-Connect" */;
@@ -175,6 +225,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Jason Kim";
 				TargetAttributes = {
+					9697B5911D1B0842004F8396 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 96993F331CE13E9200725E65;
+					};
 					96993F331CE13E9200725E65 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -194,11 +248,19 @@
 			projectRoot = "";
 			targets = (
 				96993F331CE13E9200725E65 /* Graph-iOS-Swift-Connect */,
+				9697B5911D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9697B5901D1B0842004F8396 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96993F321CE13E9200725E65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +323,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9697B58E1D1B0842004F8396 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9697B5951D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96993F301CE13E9200725E65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +344,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9697B5981D1B0843004F8396 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96993F331CE13E9200725E65 /* Graph-iOS-Swift-Connect */;
+			targetProxy = 9697B5971D1B0843004F8396 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		96993F3B1CE13E9200725E65 /* Main.storyboard */ = {
@@ -295,6 +373,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9697B5991D1B0843004F8396 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Graph-iOS-Swift-ConnectTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Graph-iOS-Swift-Connect.app/Graph-iOS-Swift-Connect";
+			};
+			name = Debug;
+		};
+		9697B59A1D1B0843004F8396 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Graph-iOS-Swift-ConnectTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Graph-iOS-Swift-Connect.app/Graph-iOS-Swift-Connect";
+			};
+			name = Release;
+		};
 		96993F441CE13E9200725E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +512,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9697B59B1D1B0843004F8396 /* Build configuration list for PBXNativeTarget "Graph-iOS-Swift-ConnectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9697B5991D1B0843004F8396 /* Debug */,
+				9697B59A1D1B0843004F8396 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		96993F2F1CE13E9200725E65 /* Build configuration list for PBXProject "Graph-iOS-Swift-Connect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -38,7 +38,7 @@ class SendViewController: UIViewController {
 
 
 // MARK: Actions
-private extension SendViewController {
+extension SendViewController {
     @IBAction func disconnectGraph(sender: AnyObject) {
         self.disconnect()
     }
@@ -72,7 +72,7 @@ private extension SendViewController {
 
 
 // MARK: Graph Helper
-private extension SendViewController {
+extension SendViewController {
     func disconnect() {
         authentication.disconnect()
         self.navigationController?.popViewControllerAnimated(true)
@@ -121,7 +121,7 @@ private extension SendViewController {
      
      - returns: MSGraphMessage object with given recipient. The body is created from EmailBody.html
      */
-    private func createSampleMessage(to emailAddress: String) -> MSGraphMessage? {
+    func createSampleMessage(to emailAddress: String) -> MSGraphMessage? {
         let message = MSGraphMessage()
         
         // set recipients
