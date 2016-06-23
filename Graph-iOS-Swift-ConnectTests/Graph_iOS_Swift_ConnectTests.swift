@@ -48,7 +48,6 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     
     // check for creation of message
     func testCreateMailMessage() {
-        
 
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc = storyboard.instantiateViewControllerWithIdentifier("SendViewController") as! SendViewController
