@@ -18,6 +18,8 @@
 		96993F4A1CE1489700725E65 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F491CE1489700725E65 /* ConnectViewController.swift */; };
 		96993F4C1CE1493300725E65 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F4B1CE1493300725E65 /* ApplicationConstants.swift */; };
 		96993F541CE1E36500725E65 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F531CE1E36500725E65 /* SendViewController.swift */; };
+		96EDF8C21D1C60FB00B6A083 /* testUserArgs.json in Resources */ = {isa = PBXBuildFile; fileRef = 96EDF8C11D1C60FB00B6A083 /* testUserArgs.json */; };
+		96EDF8C41D1C720F00B6A083 /* testAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EDF8C31D1C720F00B6A083 /* testAuthProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		96993F4B1CE1493300725E65 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		96993F501CE1643B00725E65 /* Graph-iOS-Swift-Connect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Graph-iOS-Swift-Connect-Bridging-Header.h"; sourceTree = "<group>"; };
 		96993F531CE1E36500725E65 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		96EDF8C11D1C60FB00B6A083 /* testUserArgs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUserArgs.json; sourceTree = "<group>"; };
+		96EDF8C31D1C720F00B6A083 /* testAuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testAuthProvider.swift; sourceTree = "<group>"; };
 		E4E3928AF04A3177682A718D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,8 +132,10 @@
 		9697B5931D1B0843004F8396 /* Graph-iOS-Swift-ConnectTests */ = {
 			isa = PBXGroup;
 			children = (
+				96EDF8C31D1C720F00B6A083 /* testAuthProvider.swift */,
 				9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */,
 				9697B5961D1B0843004F8396 /* Info.plist */,
+				96EDF8C11D1C60FB00B6A083 /* testUserArgs.json */,
 			);
 			path = "Graph-iOS-Swift-ConnectTests";
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96EDF8C21D1C60FB00B6A083 /* testUserArgs.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96EDF8C41D1C720F00B6A083 /* testAuthProvider.swift in Sources */,
 				9697B5951D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +527,7 @@
 				9697B59A1D1B0843004F8396 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96993F2F1CE13E9200725E65 /* Build configuration list for PBXProject "Graph-iOS-Swift-Connect" */ = {
 			isa = XCConfigurationList;

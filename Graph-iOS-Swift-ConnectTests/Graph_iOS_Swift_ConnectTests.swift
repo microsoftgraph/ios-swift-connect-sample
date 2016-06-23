@@ -36,9 +36,29 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     
     // check for creation of message
     func testCreateMailMessage() {
+        
+        let path = NSBundle(forClass: self.dynamicType).pathForResource("testUserArgs", ofType: "json")
+        XCTAssertNotNil(path)
+        
+        let jsonData = try! NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe)
+        let jsonResult = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+        
+        let username = jsonResult["test.username"] as! String
+        let password = jsonResult["test.password"] as! String
+        let clientId = jsonResult["test.clientId"] as! String
+        
+        print(username, password, clientId)
+        
+        XCTAssertNotNil(username)
+        XCTAssertNotNil(password)
+        XCTAssertNotNil(clientId)
+        
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc = storyboard.instantiateViewControllerWithIdentifier("SendViewController") as! SendViewController
         let message = vc.createSampleMessage(to: "test@samplemail")
+        
+        
+        
         
         XCTAssertNotNil(message)
     }
