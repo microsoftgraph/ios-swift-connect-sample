@@ -12,9 +12,21 @@ import UIKit
 
 class Graph_iOS_Swift_ConnectTests: XCTestCase {
     
+    var graphClient: MSGraphClient?
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        if graphClient == nil {
+            print("Create client")
+            MSGraphClient.setAuthenticationProvider(testAuthProvider())
+            graphClient = MSGraphClient.defaultClient()
+        }
+        else {
+            print("Load client - client already created")
+        }
+
     }
     
     override func tearDown() {
@@ -37,30 +49,52 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     // check for creation of message
     func testCreateMailMessage() {
         
-        let path = NSBundle(forClass: self.dynamicType).pathForResource("testUserArgs", ofType: "json")
-        XCTAssertNotNil(path)
-        
-        let jsonData = try! NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe)
-        let jsonResult = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
-        
-        let username = jsonResult["test.username"] as! String
-        let password = jsonResult["test.password"] as! String
-        let clientId = jsonResult["test.clientId"] as! String
-        
-        print(username, password, clientId)
-        
-        XCTAssertNotNil(username)
-        XCTAssertNotNil(password)
-        XCTAssertNotNil(clientId)
-        
+
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc = storyboard.instantiateViewControllerWithIdentifier("SendViewController") as! SendViewController
         let message = vc.createSampleMessage(to: "test@samplemail")
-        
-        
-        
-        
+
         XCTAssertNotNil(message)
     }
     
+    func testAuthentication() {
+        // Declare our expectation
+        var readyExpectation = expectationWithDescription("ready")
+        
+        let request: MSGraphUserRequest = (graphClient?.me().request())!
+            
+        request.getWithCompletion({ (user: MSGraphUser?, error: NSError?) in
+            
+            print("user", user!)
+            
+            
+            readyExpectation.fulfill()
+            })
+        
+        waitForExpectationsWithTimeout(50) { (error: NSError?) in
+            XCTAssertNil(error, "Error")
+            return
+        }
+        
+        
+        readyExpectation = expectationWithDescription("again")
+        
+        request.getWithCompletion({ (user: MSGraphUser?, error: NSError?) in
+            
+            print("user", user!)
+            
+            
+            readyExpectation.fulfill()
+        })
+        
+        waitForExpectationsWithTimeout(50) { (error: NSError?) in
+            XCTAssertNil(error, "Error")
+            return
+        }
+        
+        
+        
+    }
 }
+
+
