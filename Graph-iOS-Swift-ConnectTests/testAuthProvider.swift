@@ -24,9 +24,6 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
 
     @objc func appendAuthenticationHeaders(request: NSMutableURLRequest!, completion completionHandler: MSAuthenticationCompletion!) {
         
-        print(request.allHTTPHeaderFields)
-        print(request.HTTPBody)
-        
         if accessToken != "" {
             let oauthAuthorizationHeader = String(format: "%@ %@", MS_AADV2_TOKEN_TYPE, accessToken)
             request.setValue(MS_API_HEADER_AUTHORIZATION, forHTTPHeaderField: oauthAuthorizationHeader)
@@ -55,14 +52,16 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
                 
                 if let validData = data {
                     let jsonDictionary = try! NSJSONSerialization.JSONObjectWithData(validData, options: .AllowFragments) as! NSDictionary
-                    print(jsonDictionary)
-                    
-                    self.accessToken = jsonDictionary["access_token"] as! String
+                    if let accessTokenReturned = jsonDictionary["access_token"] {
+                        self.accessToken = accessTokenReturned as! String
+                    }
+                    else {
+                        self.accessToken = "WRONG_TOKEN"
+                    }
                 }
                 
                 let oauthAuthorizationHeader = String(format: "%@ %@", MS_AADV2_TOKEN_TYPE, self.accessToken)
                 request.setValue(oauthAuthorizationHeader, forHTTPHeaderField: MS_API_HEADER_AUTHORIZATION)
-                print(request.allHTTPHeaderFields)
 
                 completionHandler(request, error)
             })
