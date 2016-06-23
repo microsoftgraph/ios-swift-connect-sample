@@ -56,7 +56,7 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     
     
     // check sending mail
-    func testAuthentication() {
+    func testSendingMail() {
 
         // get email address
         let path = NSBundle(forClass: self.dynamicType).pathForResource("testUserArgs", ofType: "json")
