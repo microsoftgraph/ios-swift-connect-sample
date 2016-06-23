@@ -10,7 +10,7 @@ get_script_dir () {
      pwd
 }
 
-FILE="$(get_script_dir)/Graph-iOS-Swift-ConnectTests/testUserArgs.json"
+FILE="$(get_script_dir)/testUserArgs.json"
 
 /bin/cat <<EOM >$FILE
 {
