@@ -17,6 +17,7 @@
 		96993F4A1CE1489700725E65 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F491CE1489700725E65 /* ConnectViewController.swift */; };
 		96993F4C1CE1493300725E65 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F4B1CE1493300725E65 /* ApplicationConstants.swift */; };
 		96993F541CE1E36500725E65 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F531CE1E36500725E65 /* SendViewController.swift */; };
+		96C3D3641D251C0A00893C3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96C3D3631D251C0A00893C3E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		96993F4B1CE1493300725E65 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		96993F501CE1643B00725E65 /* Graph-iOS-Swift-Connect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Graph-iOS-Swift-Connect-Bridging-Header.h"; sourceTree = "<group>"; };
 		96993F531CE1E36500725E65 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		96C3D3631D251C0A00893C3E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E4E3928AF04A3177682A718D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 				96993F431CE13E9200725E65 /* Info.plist */,
 				96993F3E1CE13E9200725E65 /* Assets.xcassets */,
 				968F3AC71CE339AF00EC4DFC /* EmailBody.html */,
+				96C3D3631D251C0A00893C3E /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C3D3641D251C0A00893C3E /* Localizable.strings in Resources */,
 				96993F421CE13E9200725E65 /* LaunchScreen.storyboard in Resources */,
 				96993F3F1CE13E9200725E65 /* Assets.xcassets in Resources */,
 				96993F3D1CE13E9200725E65 /* Main.storyboard in Resources */,
