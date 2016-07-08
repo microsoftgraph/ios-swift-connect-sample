@@ -383,6 +383,7 @@
 /* Begin XCBuildConfiguration section */
 		9697B5991D1B0843004F8396 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Graph-iOS-Swift-ConnectTests/Info.plist";
@@ -395,6 +396,7 @@
 		};
 		9697B59A1D1B0843004F8396 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Graph-iOS-Swift-ConnectTests/Info.plist";
