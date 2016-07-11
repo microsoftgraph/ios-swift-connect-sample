@@ -14,13 +14,13 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
     
     var accessToken: String = ""
     
-    let contentType   = "application/x-www-form-urlencoded"
-    let grantType     = "password"
-    let tokenEndPoint = "https://login.microsoftonline.com/common/oauth2/token"
-    let requestType   = "POST"
-    let resourceId    = "https://graph.microsoft.com"
-    
-    let tokenType = "bearer"
+    let contentType           = "application/x-www-form-urlencoded"
+    let grantType             = "password"
+    let tokenEndPoint         = "https://login.microsoftonline.com/common/oauth2/token"
+    let requestType           = "POST"
+    let resourceId            = "https://graph.microsoft.com"
+
+    let tokenType             = "bearer"
     let apiHeaderAuthrization = "Authorization"
 
     @objc func appendAuthenticationHeaders(request: NSMutableURLRequest!, completion completionHandler: MSAuthenticationCompletion!) {
