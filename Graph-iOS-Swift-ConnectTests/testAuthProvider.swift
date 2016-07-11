@@ -18,14 +18,15 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
     let grantType     = "password"
     let tokenEndPoint = "https://login.microsoftonline.com/common/oauth2/token"
     let requestType   = "POST"
-    let subjet        = "Email send from test in iOS connect sample"
-    let body          = "<html><body>The body of the test email</body></html>"
     let resourceId    = "https://graph.microsoft.com"
+    
+    let tokenType = "bearer"
+    let apiHeaderAuthrization = "Authorization"
 
     @objc func appendAuthenticationHeaders(request: NSMutableURLRequest!, completion completionHandler: MSAuthenticationCompletion!) {
         
         if accessToken != "" {
-            let oauthAuthorizationHeader = String(format: "%@ %@", MS_AADV2_TOKEN_TYPE, accessToken)
+            let oauthAuthorizationHeader = String(format: "%@ %@", tokenType, accessToken)
             request.setValue(MS_API_HEADER_AUTHORIZATION, forHTTPHeaderField: oauthAuthorizationHeader)
             completionHandler(request, nil)
         }
@@ -60,8 +61,8 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
                     }
                 }
                 
-                let oauthAuthorizationHeader = String(format: "%@ %@", MS_AADV2_TOKEN_TYPE, self.accessToken)
-                request.setValue(oauthAuthorizationHeader, forHTTPHeaderField: MS_API_HEADER_AUTHORIZATION)
+                let oauthAuthorizationHeader = String(format: "%@ %@", self.tokenType, self.accessToken)
+                request.setValue(oauthAuthorizationHeader, forHTTPHeaderField: self.apiHeaderAuthrization)
 
                 completionHandler(request, error)
             })
