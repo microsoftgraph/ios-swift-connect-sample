@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25E0E8BFA25C5D2AB88753B2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E3928AF04A3177682A718D /* libPods.a */; };
+		03AA04D6C68C66C838AD3F55 /* libPods-Graph-iOS-Swift-Connect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B32166337F6F81939C360C /* libPods-Graph-iOS-Swift-Connect.a */; };
 		9683C8191CE4545000ADD241 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8181CE4545000ADD241 /* Authentication.swift */; };
 		968F3AC81CE339AF00EC4DFC /* EmailBody.html in Resources */ = {isa = PBXBuildFile; fileRef = 968F3AC71CE339AF00EC4DFC /* EmailBody.html */; };
 		96993F381CE13E9200725E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F371CE13E9200725E65 /* AppDelegate.swift */; };
@@ -35,8 +35,11 @@
 		96993F501CE1643B00725E65 /* Graph-iOS-Swift-Connect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Graph-iOS-Swift-Connect-Bridging-Header.h"; sourceTree = "<group>"; };
 		96993F531CE1E36500725E65 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		96C3D3631D251C0A00893C3E /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D5B32166337F6F81939C360C /* libPods-Graph-iOS-Swift-Connect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Graph-iOS-Swift-Connect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E3928AF04A3177682A718D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EAD0645B2800EEDFB335AA70 /* Pods-Graph-iOS-Swift-Connect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Graph-iOS-Swift-Connect.release.xcconfig"; path = "Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect.release.xcconfig"; sourceTree = "<group>"; };
+		FEBE713BEE3A4EC0B685D9FB /* Pods-Graph-iOS-Swift-Connect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Graph-iOS-Swift-Connect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25E0E8BFA25C5D2AB88753B2 /* libPods.a in Frameworks */,
+				03AA04D6C68C66C838AD3F55 /* libPods-Graph-iOS-Swift-Connect.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,8 @@
 			children = (
 				EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */,
 				86E20F979AFC71C434FEB4CA /* Pods.release.xcconfig */,
+				FEBE713BEE3A4EC0B685D9FB /* Pods-Graph-iOS-Swift-Connect.debug.xcconfig */,
+				EAD0645B2800EEDFB335AA70 /* Pods-Graph-iOS-Swift-Connect.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E3928AF04A3177682A718D /* libPods.a */,
+				D5B32166337F6F81939C360C /* libPods-Graph-iOS-Swift-Connect.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,12 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96993F461CE13E9200725E65 /* Build configuration list for PBXNativeTarget "Graph-iOS-Swift-Connect" */;
 			buildPhases = (
-				C8A9AC9BB50E7B9B4E2D878D /* Check Pods Manifest.lock */,
+				C8A9AC9BB50E7B9B4E2D878D /* [CP] Check Pods Manifest.lock */,
 				96993F301CE13E9200725E65 /* Sources */,
 				96993F311CE13E9200725E65 /* Frameworks */,
 				96993F321CE13E9200725E65 /* Resources */,
-				F282115C6C042C83451BD073 /* Embed Pods Frameworks */,
-				7B5DF4502EC664AF550BD2AD /* Copy Pods Resources */,
+				F282115C6C042C83451BD073 /* [CP] Embed Pods Frameworks */,
+				7B5DF4502EC664AF550BD2AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,29 +223,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7B5DF4502EC664AF550BD2AD /* Copy Pods Resources */ = {
+		7B5DF4502EC664AF550BD2AD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8A9AC9BB50E7B9B4E2D878D /* Check Pods Manifest.lock */ = {
+		C8A9AC9BB50E7B9B4E2D878D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,19 +253,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F282115C6C042C83451BD073 /* Embed Pods Frameworks */ = {
+		F282115C6C042C83451BD073 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -384,7 +390,7 @@
 		};
 		96993F471CE13E9200725E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA6684A9B714FD26D3B2BF3E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = FEBE713BEE3A4EC0B685D9FB /* Pods-Graph-iOS-Swift-Connect.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -399,7 +405,7 @@
 		};
 		96993F481CE13E9200725E65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86E20F979AFC71C434FEB4CA /* Pods.release.xcconfig */;
+			baseConfigurationReference = EAD0645B2800EEDFB335AA70 /* Pods-Graph-iOS-Swift-Connect.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
