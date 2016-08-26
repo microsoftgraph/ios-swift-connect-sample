@@ -68,7 +68,7 @@
         <!--Microsoft Graph Connect-->
         <scene sceneID="Wrd-Dl-uhC">
             <objects>
-                <viewController id="sig-FU-mD5" customClass="SendViewController" customModule="Graph_iOS_Swift_Connect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SendViewController" id="sig-FU-mD5" customClass="SendViewController" customModule="Graph_iOS_Swift_Connect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QWN-5d-LHX"/>
                         <viewControllerLayoutGuide type="bottom" id="rxl-r5-hbv"/>
