@@ -16,6 +16,9 @@ class ConnectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = NSLocalizedString("GRAPH_TITLE", comment: "")
+        connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), forState: .Normal)
     }
     
 
@@ -51,8 +54,8 @@ private extension ConnectViewController {
             if let graphError = error {
                 switch graphError {
                 case .NSErrorType(let nsError):
-                    print("Error:", nsError.localizedDescription)
-                    self.showError(message: "Check print log for error details")
+                    print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
+                    self.showError(message: NSLocalizedString("CHECK_LOG_ERROR", comment: ""))
                 }
             }
             else {
@@ -68,20 +71,20 @@ private extension ConnectViewController {
     func loadingUI(show show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
-            self.connectButton.setTitle("Connecting...", forState: .Normal)
+            self.connectButton.setTitle(NSLocalizedString("CONNECTING", comment: ""), forState: .Normal)
             self.connectButton.enabled = false;
         }
         else {
             self.activityIndicator.stopAnimating()
-            self.connectButton.setTitle("Connect", forState: .Normal)
+            self.connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), forState: .Normal)
             self.connectButton.enabled = true;
         }
     }
     
     func showError(message message:String) {
         dispatch_async(dispatch_get_main_queue(),{
-            let alertControl = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-            alertControl.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+            let alertControl = UIAlertController(title: NSLocalizedString("ERROR", comment: ""), message: message, preferredStyle: .Alert)
+            alertControl.addAction(UIAlertAction(title: NSLocalizedString("CLOSE", comment: ""), style: .Default, handler: nil))
             
             self.presentViewController(alertControl, animated: true, completion: nil)
         })

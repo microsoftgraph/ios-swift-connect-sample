@@ -154,6 +154,8 @@ This is where the status is displayed</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionLabel" destination="ZeF-SL-ySD" id="Sl9-Tg-VF8"/>
+                        <outlet property="disconnectButton" destination="nim-p3-Iye" id="uxo-vO-lFL"/>
                         <outlet property="emailTextField" destination="Ymk-6E-2j5" id="s4s-mC-7X3"/>
                         <outlet property="headerLabel" destination="M8m-0b-ehc" id="e9D-C7-P3R"/>
                         <outlet property="sendButton" destination="xb1-5c-20S" id="W1I-yU-ATz"/>

@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
+
+
+// ConnectViewController
+"CONNECT"                = "Connect";
+"CONNECTING"             = "Connecting...";
+
+// SendViewController
+"DISCONNECT"             = "Disconnect";
+"DESCRIPTION"            = "You're now connected to Office 365.\nTap the Send button below to send a message from your account using the iOS Microsoft Graph SDK.";
+
+"SEND"                   = "Send";
+"SEND_FAILURE"           = "Send mail has failed. Please look at the log for more details.";
+"SEND_SUCCESS"           = "Mail sent successfully.";
+
+"LOADING_USER_INFO"      = "Loading user information";
+"GRAPH_ERROR"            = "Graph Error.";
+"USER_INFO_LOAD_FAILURE" = "User information loading failed.";
+"HI_USER"                = "Hi %@";
+"USER_INFO_LOAD_SUCCESS" = "User information loaded.";
+
+"MAIL_SUBJECT"           = "Mail received from the Office 365 iOS Microsoft Graph SDK Sample";
+
+// Common
+"GRAPH_TITLE"            = "Microsoft Graph Connect";
+"CHECK_LOG_ERROR"        = "Check print log for error details";
+"ERROR"                  = "Error";
+"CLOSE"                  = "Close";
+

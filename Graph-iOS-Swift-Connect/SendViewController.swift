@@ -8,6 +8,8 @@ import UIKit
 
 class SendViewController: UIViewController {
     
+    @IBOutlet var disconnectButton: UIBarButtonItem!
+    @IBOutlet var descriptionLabel: UILabel!
     
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var emailTextField: UITextField!
@@ -27,7 +29,17 @@ class SendViewController: UIViewController {
         super.viewDidLoad()
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         
-        self.getUserInfo()
+        getUserInfo()
+        initUI()
+        
+    }
+    
+    func initUI() {
+        self.title = NSLocalizedString("GRAPH_TITLE", comment: "")
+        self.disconnectButton.title = NSLocalizedString("DISCONNECT", comment: "")
+        self.descriptionLabel.text = NSLocalizedString("DESCRIPTION", comment: "")
+        self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), forState: .Normal)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,16 +65,15 @@ extension SendViewController {
             mailRequest.executeWithCompletion({
                 (response: [NSObject : AnyObject]?, error: NSError?) in
                 if let nsError = error {
-                    print("Error", nsError.localizedDescription)
+                    print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
                     dispatch_async(dispatch_get_main_queue(),{
-                        self.statusTextView.text = "Send mail has failed. Please look at the log for more details."
+                        self.statusTextView.text = NSLocalizedString("SEND_FAILURE", comment: "")
                     })
                     
                 }
                 else {
-                    print("Sent!")
                     dispatch_async(dispatch_get_main_queue(),{
-                        self.statusTextView.text = "Mail sent successfully."
+                        self.statusTextView.text = NSLocalizedString("SEND_SUCCESS", comment: "")
                     })
                 }
             })
@@ -83,29 +94,37 @@ extension SendViewController {
      */
     func getUserInfo() {
         self.sendButton.enabled = false
-        self.statusTextView.text = "Loading user information"
+        self.statusTextView.text = NSLocalizedString("LOADING_USER_INFO", comment: "")
         
         self.graphClient.me().request().getWithCompletion {
             (user: MSGraphUser?, error: NSError?) in
             if let graphError = error {
-                print("Error:", graphError)
+                print(NSLocalizedString("ERROR", comment: ""), graphError)
                 dispatch_async(dispatch_get_main_queue(),{
-                    self.statusTextView.text = "Graph Error."
+                    self.statusTextView.text = NSLocalizedString("GRAPH_ERROR", comment: "")
                 })
 
             }
             else {
                 guard let userInfo = user else {
                     dispatch_async(dispatch_get_main_queue(),{
-                        self.statusTextView.text = "User information loading failed."
+                        self.statusTextView.text = NSLocalizedString("USER_INFO_LOAD_FAILURE", comment: "")
+
                     })
                     return
                 }
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     self.emailTextField.text = userInfo.mail
-                    self.headerLabel.text = "Hi \(userInfo.displayName)"
-                    self.statusTextView.text = "User information loaded."
+                    
+                    if let displayName = userInfo.displayName {
+                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: ""), displayName) as String
+                    }
+                    else {
+                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: ""), "") as String
+                    }
+                    
+                    self.statusTextView.text = NSLocalizedString("USER_INFO_LOAD_SUCCESS", comment: "")
                     self.sendButton.enabled = true
                 })
                 
@@ -135,7 +154,7 @@ extension SendViewController {
         let toRecipientList = [toRecipient]
         
         message.toRecipients = toRecipientList
-        message.subject = "Mail received from the Office 365 iOS Microsoft Graph SDK Sample"
+        message.subject = NSLocalizedString("MAIL_SUBJECT", comment: "")
         
         let messageBody = MSGraphItemBody()
         messageBody.contentType = MSGraphBodyType.html()
