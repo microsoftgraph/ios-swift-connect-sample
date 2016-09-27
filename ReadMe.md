@@ -5,7 +5,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 > Note: Try out the [Microsoft Graph App Registration Portal](https://graph.microsoft.io/en-us/app-registration) page which simplifies registration so you can get this sample running faster.
  
 ## Prerequisites
-* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple
+* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple -This samples is currently tested and supported on version 7.3.1 of Xcode.
 * Installation of [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)  as a dependency manager.
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
 
