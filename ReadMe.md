@@ -5,7 +5,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 > Note: Try out the [Microsoft Graph App Registration Portal](https://graph.microsoft.io/en-us/app-registration) page which simplifies registration so you can get this sample running faster.
  
 ## Prerequisites
-* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple -This samples is currently tested and supported on version 7.3.1 of Xcode.
+* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple -This sample is currently tested and supported on version 7.3.1 of Xcode.
 * Installation of [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)  as a dependency manager.
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
 
@@ -13,6 +13,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 * A client id from the registered app at [Microsoft Graph App Registration Portal](https://graph.microsoft.io/en-us/app-registration)
 * To make requests, an **MSAuthenticationProvider** must be provided which is capable of authenticating HTTPS requests with an appropriate OAuth 2.0 bearer token. We will be using [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) for a sample implementation of MSAuthenticationProvider that can be used to jump-start your project. See the below section **Code of Interest** for more information.
 
+>**Note:** The sample was tested on Xcode 7.3.1. This sample does not yet support Xcode 8 and iOS10, which uses the Swift 3.0 framework.
        
 ## Running this sample in Xcode
 
