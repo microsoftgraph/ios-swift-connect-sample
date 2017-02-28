@@ -1,18 +1,20 @@
-﻿# <a name="office-365-connect-sample-for-ios-using-the-microsoft-graph-sdk"></a>Microsoft Graph SDK を使用した iOS 用 Office 365 Connect サンプル
+# <a name="office-365-connect-sample-for-ios-using-the-microsoft-graph-sdk"></a>Microsoft Graph SDK を使用した iOS 用 Office 365 Connect サンプル
 
 Microsoft Graph は、Microsoft Cloud からのデータ、リレーションシップおよびインサイトにアクセスするための統合エンドポイントです。このサンプルでは、これに接続して認証し、[Microsoft Graph SDK for iOS](https://github.com/microsoftgraph/msgraph-sdk-ios) 経由でメールとユーザーの API を呼び出す方法を示します。
 
 > 注:このサンプルをより迅速に実行するため、登録手順が簡略化された「[Microsoft Graph アプリ登録ポータル](https://graph.microsoft.io/en-us/app-registration)」ページをお試しください。
  
 ## <a name="prerequisites"></a>前提条件
-* Apple 社の [Xcode](https://developer.apple.com/xcode/downloads/) - 現在このサンプルがテストされ、Xcode のバージョン 7.3.1 でサポートされています。
+* Apple 社の [Xcode](https://developer.apple.com/xcode/downloads/) - 現在このサンプルは、Xcode のバージョン 7.3.1 でテストされ、サポートされています。
 * 依存関係マネージャーとしての [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html) のインストール。
 * Office 365、outlook.com、hotmail.com などの、Microsoft の職場または個人用のメール アカウント。Office 365 アプリのビルドを開始するために必要なリソースを含む、[Office 365 Developer サブスクリプション](https://aka.ms/devprogramsignup)にサインアップできます。
 
      > 注:サブスクリプションをすでにお持ちの場合、上記のリンクをクリックすると、「*申し訳ございません。現在のアカウントに追加できません*」というメッセージが表示されるページに移動します。その場合は、現在使用している Office 365 サブスクリプションのアカウントをご利用いただけます。    
-* [Microsoft Graph アプリ登録ポータル](https://graph.microsoft.io/en-us/app-registration) で登録済みのアプリのクライアント ID
+* 
+  [Microsoft Graph アプリ登録ポータル](https://graph.microsoft.io/en-us/app-registration) で登録済みのアプリのクライアント ID
 * 要求を実行するには、適切な OAuth 2.0 ベアラー トークンを使用して HTTPS 要求を認証できる **MSAuthenticationProvider** を指定する必要があります。プロジェクトのジャンプ スタート用に使用できる MSAuthenticationProvider をサンプル実装するために、[msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) を使用します。詳細については、以下の「**目的のコード**」セクションをご覧ください。
 
+>**注:**サンプルは Xcode 7.3.1 でテストされました。このサンプルは、Xcode 8 および iOS10 (Swift 3.0 フレームワークを使用する) をまだサポートしていません。
        
 ## <a name="running-this-sample-in-xcode"></a>Xcode でこのサンプルを実行する
 
@@ -103,5 +105,5 @@ Office 365 開発全般の質問につきましては、「[Stack Overflow](http
 * [CocoaPods を使う](https://guides.cocoapods.org/using/using-cocoapods.html)
 
 ## <a name="copyright"></a>著作権
-Copyright (c) 2016 Microsoft.All rights reserved.
+Copyright (c) 2016 Microsoft. All rights reserved.
 

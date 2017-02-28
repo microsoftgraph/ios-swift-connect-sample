@@ -13,6 +13,7 @@ Microsoft Graph ist ein einheitlicher Endpunkt für den Zugriff auf Daten, Bezie
 * Eine Client-ID aus der registrierten App unter dem [App-Registrierungsportal von Microsoft Graph](https://graph.microsoft.io/en-us/app-registration)
 * Um Anforderungen auszuführen, muss ein **MSAuthenticationProvider** bereitgestellt werden, der HTTPS-Anforderungen mit einem entsprechenden OAuth 2.0-Bearertoken authentifizieren kann. Wir verwenden [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) für eine Beispielimplementierung von MSAuthenticationProvider, die Sie für einen Schnelleinstieg in Ihr Projekt verwenden können. Weitere Informationen finden Sie im folgenden Abschnitt **Interessanter Code**.
 
+>**Hinweis:** Das Beispiel wurde auf Xcode 7.3.1 getestet. In diesem Beispiel werden Xcode 8 und iOS10 nicht unterstützt, da hier das Swift 3.0-Framework verwendet wird.
        
 ## <a name="running-this-sample-in-xcode"></a>Ausführen dieses Beispiels in Xcode
 
