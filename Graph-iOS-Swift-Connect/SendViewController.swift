@@ -22,7 +22,7 @@ class SendViewController: UIViewController {
     lazy var graphClient: MSGraphClient = {
         
         let client = MSGraphClient.defaultClient()
-        return client
+        return client!
     }()
     
     override func viewDidLoad() {
@@ -38,11 +38,11 @@ class SendViewController: UIViewController {
         self.title = NSLocalizedString("GRAPH_TITLE", comment: "")
         self.disconnectButton.title = NSLocalizedString("DISCONNECT", comment: "")
         self.descriptionLabel.text = NSLocalizedString("DESCRIPTION", comment: "")
-        self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), forState: .Normal)
+        self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), for: UIControlState())
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
@@ -51,28 +51,28 @@ class SendViewController: UIViewController {
 
 // MARK: Actions
 extension SendViewController {
-    @IBAction func disconnectGraph(sender: AnyObject) {
+    @IBAction func disconnectGraph(_ sender: AnyObject) {
         self.disconnect()
     }
     
-    @IBAction func sendMail(sender: AnyObject) {
+    @IBAction func sendMail(_ sender: AnyObject) {
         guard let toEmail = self.emailTextField.text else {return}
         if let message = self.createSampleMessage(to: toEmail) {
             
-            let requestBuilder = graphClient.me().sendMailWithMessage(message, saveToSentItems: false)
-            let mailRequest = requestBuilder.request()
+            let requestBuilder = graphClient.me().sendMail(with: message, saveToSentItems: false)
+            let mailRequest = requestBuilder?.request()
             
-            mailRequest.executeWithCompletion({
-                (response: [NSObject : AnyObject]?, error: NSError?) in
+            mailRequest?.execute(completion: {
+                (response: [AnyHashable: Any]?, error: Error?) in
                 if let nsError = error {
                     print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
-                    dispatch_async(dispatch_get_main_queue(),{
+                    DispatchQueue.main.async(execute: {
                         self.statusTextView.text = NSLocalizedString("SEND_FAILURE", comment: "")
                     })
                     
                 }
                 else {
-                    dispatch_async(dispatch_get_main_queue(),{
+                    DispatchQueue.main.async(execute: {
                         self.statusTextView.text = NSLocalizedString("SEND_SUCCESS", comment: "")
                     })
                 }
@@ -86,46 +86,46 @@ extension SendViewController {
 extension SendViewController {
     func disconnect() {
         authentication.disconnect()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     /**
      Fetches user information such as mail and display name
      */
     func getUserInfo() {
-        self.sendButton.enabled = false
+        self.sendButton.isEnabled = false
         self.statusTextView.text = NSLocalizedString("LOADING_USER_INFO", comment: "")
         
         self.graphClient.me().request().getWithCompletion {
-            (user: MSGraphUser?, error: NSError?) in
+            (user: MSGraphUser?, error: Error?) in
             if let graphError = error {
                 print(NSLocalizedString("ERROR", comment: ""), graphError)
-                dispatch_async(dispatch_get_main_queue(),{
+                DispatchQueue.main.async(execute: {
                     self.statusTextView.text = NSLocalizedString("GRAPH_ERROR", comment: "")
                 })
 
             }
             else {
                 guard let userInfo = user else {
-                    dispatch_async(dispatch_get_main_queue(),{
+                    DispatchQueue.main.async(execute: {
                         self.statusTextView.text = NSLocalizedString("USER_INFO_LOAD_FAILURE", comment: "")
 
                     })
                     return
                 }
                 
-                dispatch_async(dispatch_get_main_queue(),{
+                DispatchQueue.main.async(execute: {
                     self.emailTextField.text = userInfo.mail
                     
                     if let displayName = userInfo.displayName {
-                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: ""), displayName) as String
+                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: "") as NSString, displayName) as String
                     }
                     else {
-                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: ""), "") as String
+                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: "") as NSString, "") as String
                     }
                     
                     self.statusTextView.text = NSLocalizedString("USER_INFO_LOAD_SUCCESS", comment: "")
-                    self.sendButton.enabled = true
+                    self.sendButton.isEnabled = true
                 })
                 
             }
@@ -159,8 +159,8 @@ extension SendViewController {
         let messageBody = MSGraphItemBody()
         messageBody.contentType = MSGraphBodyType.html()
         
-        guard let emailBodyFilePath = NSBundle.mainBundle().pathForResource("EmailBody", ofType: "html") else {return nil}
-        messageBody.content = try! String(contentsOfFile: emailBodyFilePath, encoding: NSUTF8StringEncoding)
+        guard let emailBodyFilePath = Bundle.main.path(forResource: "EmailBody", ofType: "html") else {return nil}
+        messageBody.content = try! String(contentsOfFile: emailBodyFilePath, encoding: String.Encoding.utf8)
         message.body = messageBody
         
         return message

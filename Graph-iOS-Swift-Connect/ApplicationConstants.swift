@@ -7,7 +7,7 @@
 import Foundation
 
 struct ApplicationConstants {
-    static let clientId = "ENTER_YOUR_CLIENT_ID"
+    static let clientId = "a0e7299f-1097-4c9a-a5e9-bf6376ae1a0b"
     static let scopes   = ["https://graph.microsoft.com/Mail.Send", "https://graph.microsoft.com/User.Read", "offline_access"]
 }
 
@@ -15,7 +15,7 @@ struct ApplicationConstants {
 /**
  Simple construct to encapsulate NSError. This could be expanded for more types of graph errors in future. 
  */
-enum MSGraphError: ErrorType {
-    case NSErrorType(error: NSError)
+enum MSGraphError: Error {
+    case nsErrorType(error: NSError)
 
 }
