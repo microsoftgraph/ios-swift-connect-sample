@@ -13,6 +13,7 @@ Microsoft Graph 是存取資料的統一端點、來自 Microsoft 雲端的關�
 * 已註冊應用程式的用戶端識別碼，來自 [Microsoft Graph 應用程式註冊入口網站](https://graph.microsoft.io/en-us/app-registration)
 * 若要提出要求，必須提供 **MSAuthenticationProvider**，它能夠以適當的 OAuth 2.0 持有人權杖驗證 HTTPS 要求。我們會針對 MSAuthenticationProvider 的範例實作使用 [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter)，可以用來幫助您的專案。請參閱以下區段**感興趣的程式碼**以取得詳細資訊。
 
+>**附註：**此範例已在 Xcode 7.3.1 上經過測試。此範例尚未支援使用 Swift 3.0 架構的 Xcode 8 和 iOS10。
        
 ## <a name="running-this-sample-in-xcode"></a>在 Xcode 中執行這個範例
 

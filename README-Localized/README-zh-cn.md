@@ -1,8 +1,8 @@
-﻿# <a name="office-365-connect-sample-for-ios-using-the-microsoft-graph-sdk"></a>适用于 iOS 的 Office 365 连接示例（使用 Microsoft Graph SDK）
+# <a name="office-365-connect-sample-for-ios-using-the-microsoft-graph-sdk"></a>适用于 iOS 的 Office 365 连接示例（使用 Microsoft Graph SDK）
 
 Microsoft Graph 是访问来自 Microsoft 云的数据、关系和数据解析的统一终结点。此示例介绍如何连接并对其进行身份验证，然后通过 [适用于 iOS 的 Microsoft Graph SDK](https://github.com/microsoftgraph/msgraph-sdk-ios) 调用邮件和用户 API。
 
-> 注意：尝试 [Microsoft Graph 应用注册门户](https://graph.microsoft.io/en-us/app-registration) 页，该页简化了注册，因此你可以更快地运行该示例。
+> 注意：尝试 [Microsoft Graph 应用注册门户](https://graph.microsoft.io/zh-cn/app-registration) 页，该页简化了注册，因此你可以更快地运行该示例。
  
 ## <a name="prerequisites"></a>先决条件
 * Apple 的 [Xcode](https://developer.apple.com/xcode/downloads/) - 此示例当前正在测试，并且在 Xcode 7.3.1 版本上受支持。
@@ -10,9 +10,11 @@ Microsoft Graph 是访问来自 Microsoft 云的数据、关系和数据解析�
 * Microsoft 工作或个人电子邮件帐户，例如 Office 365 或 outlook.com、hotmail.com 等。你可以注册 [Office 365 开发人员订阅](https://aka.ms/devprogramsignup)，其中包含开始构建 Office 365 应用所需的资源。
 
      > 注意：如果已有订阅，则之前的链接会将你转至包含以下信息的页面：*抱歉，你无法将其添加到当前帐户*。在这种情况下，请使用当前 Office 365 订阅中的帐户。    
-* [Microsoft Graph 应用注册门户](https://graph.microsoft.io/en-us/app-registration) 中已注册应用的客户端 ID
+* 
+  [Microsoft Graph 应用注册门户](https://graph.microsoft.io/zh-cn/app-registration) 中已注册应用的客户端 ID
 * 若要生成请求，必须提供 **MSAuthenticationProvider**（它能够使用适当的 OAuth 2.0 持有者令牌对 HTTPS 请求进行身份验证）。我们将使用 [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) 作为 MSAuthenticationProvider 的示例实现，它可用于快速启动你的项目。有关详细信息，请参阅下面的“**相关代码**”部分。
 
+>**注意：**在 Xcode 7.3.1 上测试此示例。此示例使用 Swift 3.0 框架，尚不支持 Xcode 8 和 iOS10。
        
 ## <a name="running-this-sample-in-xcode"></a>在 Xcode 中运行此示例
 

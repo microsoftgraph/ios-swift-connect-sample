@@ -2,7 +2,7 @@
 
 Microsoft Graph ist ein einheitlicher Endpunkt für den Zugriff auf Daten, Beziehungen und Erkenntnisse, die von der Microsoft-Cloud stammen. In diesem Beispiel wird gezeigt, wie Sie eine Verbindung damit herstellen und die Authentifizierung ausführen, und dann E-Mails und Benutzer-APIs über das [Microsoft Graph-SDK für iOS](https://github.com/microsoftgraph/msgraph-sdk-ios) aufrufen.
 
-> Hinweis: Testen Sie die Seite des [App-Registrierungsportals von Microsoft Graph](https://graph.microsoft.io/en-us/app-registration), durch das die Registrierung erleichtert wird, sodass Sie schneller mit diesem Beispiel loslegen können.
+> Hinweis: Testen Sie die Seite des [App-Registrierungsportals von Microsoft Graph](https://graph.microsoft.io/de-de/app-registration), durch das die Registrierung erleichtert wird, sodass Sie schneller mit diesem Beispiel loslegen können.
  
 ## <a name="prerequisites"></a>Voraussetzungen
 * [Xcode](https://developer.apple.com/xcode/downloads/) von Apple - Dieses Beispiel wird derzeit getestet und auf Version 7.3.1 von Xcode unterstützt.
@@ -10,9 +10,10 @@ Microsoft Graph ist ein einheitlicher Endpunkt für den Zugriff auf Daten, Bezie
 * Ein geschäftliches oder persönliches Microsoft-E-Mail-Konto, z. B. Office 365 oder outlook.com, hotmail.com usw. Sie können sich für ein [Office 365-Entwicklerabonnement](https://aka.ms/devprogramsignup) registrieren. Dieses umfasst die Ressourcen, die Sie zum Erstellen von Office 365-Apps benötigen.
 
      > Hinweis: Wenn Sie bereits über ein Abonnement verfügen, gelangen Sie über den vorherigen Link zu einer Seite mit der Meldung *Leider können Sie Ihrem aktuellen Konto diesen Inhalt nicht hinzufügen*. Verwenden Sie in diesem Fall ein Konto aus Ihrem aktuellen Office 365-Abonnement.    
-* Eine Client-ID aus der registrierten App unter dem [App-Registrierungsportal von Microsoft Graph](https://graph.microsoft.io/en-us/app-registration)
+* Eine Client-ID aus der registrierten App unter dem [App-Registrierungsportal von Microsoft Graph](https://graph.microsoft.io/de-de/app-registration)
 * Um Anforderungen auszuführen, muss ein **MSAuthenticationProvider** bereitgestellt werden, der HTTPS-Anforderungen mit einem entsprechenden OAuth 2.0-Bearertoken authentifizieren kann. Wir verwenden [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) für eine Beispielimplementierung von MSAuthenticationProvider, die Sie für einen Schnelleinstieg in Ihr Projekt verwenden können. Weitere Informationen finden Sie im folgenden Abschnitt **Interessanter Code**.
 
+>**Hinweis:** Das Beispiel wurde auf Xcode 7.3.1 getestet. In diesem Beispiel werden Xcode 8 und iOS10 nicht unterstützt, da hier das Swift 3.0-Framework verwendet wird.
        
 ## <a name="running-this-sample-in-xcode"></a>Ausführen dieses Beispiels in Xcode
 

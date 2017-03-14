@@ -5,14 +5,15 @@ Microsoft Graph es un punto de conexión unificado para acceder a los datos, las
 > Nota: Consulte la página del [Portal de registro de la aplicación de Microsoft Graph](https://graph.microsoft.io/en-us/app-registration) que simplifica el registro para poder conseguir que este ejemplo se ejecute más rápidamente.
  
 ## <a name="prerequisites"></a>Requisitos previos
-* [Xcode](https://developer.apple.com/xcode/downloads/) de Apple: este ejemplo ya se ha probado y es compatible con la versión 7.3.1 de Xcode.
-* Instale [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html) como administrador de dependencias.
+* [Xcode](https://developer.apple.com/xcode/downloads/) de Apple: este ejemplo se ha probado en la versión 7.3.1 de Xcode y es compatible.
+* Instalación de [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html) como administrador de dependencias.
 * Una cuenta de correo electrónico personal o profesional de Microsoft como Office 365, outlook.com, hotmail.com, etc. Puede registrarse para [una suscripción de Office 365 Developer](https://aka.ms/devprogramsignup), que incluye los recursos que necesita para comenzar a crear aplicaciones de Office 365.
 
      > Nota: Si ya dispone de una suscripción, el vínculo anterior le dirige a una página con el mensaje *No se puede agregar a su cuenta actual*. En ese caso, use una cuenta de su suscripción actual a Office 365.    
 * Un Id. de cliente de la aplicación registrada en el [Portal de registro de la aplicación de Microsoft Graph](https://graph.microsoft.io/en-us/app-registration)
 * Para realizar solicitudes, se debe proporcionar un **MSAuthenticationProvider** que sea capaz de autenticar solicitudes HTTPS con un token de portador OAuth 2.0 adecuado. Usaremos [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) para una implementación de MSAuthenticationProvider que puede usarse para poner en marcha el proyecto. Consulte la sección **Código de interés** para obtener más información.
 
+>**Nota:** Este ejemplo se ha probado en la versión 7.3.1 de Xcode. Este ejemplo todavía no es compatible con Xcode 8 y iOS10, ya que usa el marco Swift 3.0.
        
 ## <a name="running-this-sample-in-xcode"></a>Ejecutar este ejemplo en Xcode
 
