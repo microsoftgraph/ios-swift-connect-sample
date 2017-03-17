@@ -62,6 +62,7 @@ extension SendViewController {
             let requestBuilder = graphClient.me().sendMail(with: message, saveToSentItems: false)
             let mailRequest = requestBuilder?.request()
             
+            //Returned MSURLSessionDataTask object is not used. Ignore compiler warning.
             mailRequest?.execute(completion: {
                 (response: [AnyHashable: Any]?, error: Error?) in
                 if let nsError = error {
@@ -86,6 +87,8 @@ extension SendViewController {
 extension SendViewController {
     func disconnect() {
         authentication.disconnect()
+        
+        //Returned UIViewController is not used. Compiler warning should be ignored
         self.navigationController?.popViewController(animated: true)
     }
     
