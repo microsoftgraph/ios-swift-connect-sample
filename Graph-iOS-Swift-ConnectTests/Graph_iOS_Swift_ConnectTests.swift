@@ -31,7 +31,7 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     // check for creation of message
     func testCreateMailMessage() {
 
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewControllerWithIdentifier("SendViewController") as! SendViewController
         let message = vc.createSampleMessage(to: "test@samplemail")
 
@@ -40,7 +40,7 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     
     // check for getting user information: GET ME
     func testGetUserInformation() {
-        let readyExpectation = expectationWithDescription("ready")
+        let readyExpectation = expectation(description: "ready")
         graphClient.me().request().getWithCompletion({ (user: MSGraphUser?, error: NSError?) in
             XCTAssertNotNil(user, "User data should not be nil")
             XCTAssertNil(error, "Error should be nil")
@@ -48,7 +48,7 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
             readyExpectation.fulfill()
         })
         
-        waitForExpectationsWithTimeout(10) { (error: NSError?) in
+        waitForExpectations(timeout: 10) { (error: NSError?) in
             XCTAssertNil(error, "Timeout")
             return
         }
@@ -59,25 +59,25 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
     func testSendingMail() {
 
         // get email address
-        let path = NSBundle(forClass: self.dynamicType).pathForResource("testUserArgs", ofType: "json")
+        let path = Bundle(for: type(of: self)).path(forResource: "testUserArgs", ofType: "json")
         
-        let jsonData = try! NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe)
-        let jsonResult = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+        let jsonData = try! Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+        let jsonResult = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
         
         let username = jsonResult["test.username"] as! String
         XCTAssertNotNil(username, "username should not be nil")
         
         // get message
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewControllerWithIdentifier("SendViewController") as! SendViewController
         let message = vc.createSampleMessage(to: username)
         XCTAssertNotNil(message, "message should not be nil")
         
         // send mail
-        let readyExpectation = expectationWithDescription("ready")
+        let readyExpectation = expectation(description: "ready")
         
         graphClient.me().sendMailWithMessage(message, saveToSentItems: false).request().executeWithCompletion({
-            (response: [NSObject : AnyObject]?, error: NSError?) in
+            (response: [AnyHashable: Any]?, error: NSError?) in
             
             XCTAssertNotNil(response, "response should not be nil")
             XCTAssertNil(error, "Error should be nil")
@@ -85,7 +85,7 @@ class Graph_iOS_Swift_ConnectTests: XCTestCase {
             readyExpectation.fulfill()
         })
         
-        waitForExpectationsWithTimeout(10) { (error: NSError?) in
+        waitForExpectations(timeout: 10) { (error: NSError?) in
             XCTAssertNil(error, "Timeout")
             return
         }

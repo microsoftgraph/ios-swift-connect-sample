@@ -18,13 +18,13 @@ class ConnectViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("GRAPH_TITLE", comment: "")
-        connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), forState: .Normal)
+        connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), for: UIControlState())
     }
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // There is only one segue
-        let sendViewController: SendViewController = segue.destinationViewController as! SendViewController
+        let sendViewController: SendViewController = segue.destination as! SendViewController
         sendViewController.authentication = authentication
     }
 }
@@ -32,7 +32,7 @@ class ConnectViewController: UIViewController {
 
 // MARK: Actions
 private extension ConnectViewController {
-    @IBAction func connectToGraph(sender: AnyObject) {
+    @IBAction func connectToGraph(_ sender: AnyObject) {
         authenticate()
     }
 }
@@ -53,13 +53,13 @@ private extension ConnectViewController {
             
             if let graphError = error {
                 switch graphError {
-                case .NSErrorType(let nsError):
+                case .nsErrorType(let nsError):
                     print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
                     self.showError(message: NSLocalizedString("CHECK_LOG_ERROR", comment: ""))
                 }
             }
             else {
-                self.performSegueWithIdentifier("showSendMail", sender: nil)
+                self.performSegue(withIdentifier: "showSendMail", sender: nil)
             }
         }
     }
@@ -68,25 +68,25 @@ private extension ConnectViewController {
 
 // MARK: UI Helper
 private extension ConnectViewController {
-    func loadingUI(show show: Bool) {
+    func loadingUI(show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
-            self.connectButton.setTitle(NSLocalizedString("CONNECTING", comment: ""), forState: .Normal)
-            self.connectButton.enabled = false;
+            self.connectButton.setTitle(NSLocalizedString("CONNECTING", comment: ""), for: UIControlState())
+            self.connectButton.isEnabled = false;
         }
         else {
             self.activityIndicator.stopAnimating()
-            self.connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), forState: .Normal)
-            self.connectButton.enabled = true;
+            self.connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), for: UIControlState())
+            self.connectButton.isEnabled = true;
         }
     }
     
-    func showError(message message:String) {
-        dispatch_async(dispatch_get_main_queue(),{
-            let alertControl = UIAlertController(title: NSLocalizedString("ERROR", comment: ""), message: message, preferredStyle: .Alert)
-            alertControl.addAction(UIAlertAction(title: NSLocalizedString("CLOSE", comment: ""), style: .Default, handler: nil))
+    func showError(message:String) {
+        DispatchQueue.main.async(execute: {
+            let alertControl = UIAlertController(title: NSLocalizedString("ERROR", comment: ""), message: message, preferredStyle: .alert)
+            alertControl.addAction(UIAlertAction(title: NSLocalizedString("CLOSE", comment: ""), style: .default, handler: nil))
             
-            self.presentViewController(alertControl, animated: true, completion: nil)
+            self.present(alertControl, animated: true, completion: nil)
         })
     }
 }

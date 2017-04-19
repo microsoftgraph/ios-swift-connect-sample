@@ -23,7 +23,7 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
     let tokenType             = "bearer"
     let apiHeaderAuthrization = "Authorization"
 
-    @objc func appendAuthenticationHeaders(request: NSMutableURLRequest!, completion completionHandler: MSAuthenticationCompletion!) {
+    @objc func appendAuthenticationHeaders(_ request: NSMutableURLRequest!, completion completionHandler: MSAuthenticationCompletion!) {
         
         if accessToken != "" {
             let oauthAuthorizationHeader = String(format: "%@ %@", tokenType, accessToken)
@@ -31,10 +31,10 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
             completionHandler(request, nil)
         }
         else {
-            let path = NSBundle(forClass: self.dynamicType).pathForResource("testUserArgs", ofType: "json")
+            let path = Bundle(for: type(of: self)).path(forResource: "testUserArgs", ofType: "json")
             
-            let jsonData = try! NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe)
-            let jsonResult = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+            let jsonData = try! Data(contentsOf: URL(fileURLWithPath: path!), options: .mappedIfSafe)
+            let jsonResult = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
             
             let username = jsonResult["test.username"] as! String
             let password = jsonResult["test.password"] as! String
@@ -43,16 +43,16 @@ class testAuthProvider: NSObject, MSAuthenticationProvider {
             let authRequest = NSMutableURLRequest()
             let bodyString = "grant_type=\(grantType)&resource=\(resourceId)&client_id=\(clientId)&username=\(username)&password=\(password)"
             
-            authRequest.URL = NSURL(string: tokenEndPoint)
-            authRequest.HTTPMethod = requestType
+            authRequest.url = URL(string: tokenEndPoint)
+            authRequest.httpMethod = requestType
             authRequest.setValue(contentType, forHTTPHeaderField: "Content_Type")
-            authRequest.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
+            authRequest.httpBody = bodyString.data(using: String.Encoding.utf8)
             
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(authRequest, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            let session = URLSession.shared
+            let task = session.dataTask(with: authRequest, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) in
                 
                 if let validData = data {
-                    let jsonDictionary = try! NSJSONSerialization.JSONObjectWithData(validData, options: .AllowFragments) as! NSDictionary
+                    let jsonDictionary = try! JSONSerialization.jsonObject(with: validData, options: .allowFragments) as! NSDictionary
                     if let accessTokenReturned = jsonDictionary["access_token"] {
                         self.accessToken = accessTokenReturned as! String
                     }

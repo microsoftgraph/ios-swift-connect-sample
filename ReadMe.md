@@ -5,7 +5,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 > Note: Try out the [Microsoft Graph App Registration Portal](https://graph.microsoft.io/en-us/app-registration) page which simplifies registration so you can get this sample running faster.
  
 ## Prerequisites
-* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple -This sample is currently tested and supported on version 7.3.1 of Xcode.
+* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple -This sample is currently tested and supported on version 8.2.1 of Xcode.
 * Installation of [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)  as a dependency manager.
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
 
@@ -13,7 +13,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 * A client id from the registered app at [Microsoft Graph App Registration Portal](https://graph.microsoft.io/en-us/app-registration)
 * To make requests, an **MSAuthenticationProvider** must be provided which is capable of authenticating HTTPS requests with an appropriate OAuth 2.0 bearer token. We will be using [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) for a sample implementation of MSAuthenticationProvider that can be used to jump-start your project. See the below section **Code of Interest** for more information.
 
->**Note:** The sample was tested on Xcode 7.3.1. This sample does not yet support Xcode 8 and iOS10, which uses the Swift 3.0 framework.
+>**Note:** The sample was tested on Xcode 8.2.1. This sample supports Xcode 8 and iOS10, which uses the Swift 3.0 framework.
        
 ## Running this sample in Xcode
 
@@ -42,45 +42,57 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 5. Run the sample. You'll be asked to connect/authenticate to a work or personal mail account, and then you can send a mail to that account, or to another selected email account.
 
 
-##Code of Interest
+## Code of Interest
 
 All authentication code can be viewed in the **Authentication.swift** file. We use a sample implementation of MSAuthenticationProvider extended from [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) to provide login support for registered native apps, automatic refreshing of access tokens, and logout functionality:
 ```swift
+        // Set client ID
         NXOAuth2AuthenticationProvider.setClientId(clientId, scopes: scopes)
         
-        if NXOAuth2AuthenticationProvider.sharedAuthProvider().loginSilent() == true {
-            completion(error: nil)
+        // Try silent log in. This will attempt to sign in if there is a previous successful
+        // sign in user information.
+        if NXOAuth2AuthenticationProvider.sharedAuth().loginSilent() == true {
+            completion(nil)
         }
+        // Otherwise, present log in controller.
         else {
-            NXOAuth2AuthenticationProvider.sharedAuthProvider()
-                .loginWithViewController(nil) { (error: NSError?) in
+            NXOAuth2AuthenticationProvider.sharedAuth()
+                .login(with: nil) { (error: Error?) in
                     
                     if let nserror = error {
-                        completion(error: MSGraphError.NSErrorType(error: nserror))
+                        completion(MSGraphError.nsErrorType(error: nserror as NSError))
                     }
                     else {
-                        completion(error: nil)
+                        completion(nil)
                     }
             }
         }
-        ...
-        func disconnect() {
-     	     NXOAuth2AuthenticationProvider.sharedAuthProvider().logout()
-        }
+    ...
+    
+    func disconnect() {
+        NXOAuth2AuthenticationProvider.sharedAuth().logout()
+    }
 
 ```
 
 
-Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendMailViewcontroller.swift** we can assemble a mail request and send it using the following code:
+Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendViewcontroller.swift** we can assemble a mail request and send it using the following code:
 
 ```swift
-            let requestBuilder = graphClient.me().sendMailWithMessage(message, saveToSentItems: false)
-            let mailRequest = requestBuilder.request()
+    let requestBuilder = graphClient.me().sendMail(with: message, saveToSentItems: false)
+    let mailRequest = requestBuilder?.request()
             
-            mailRequest.executeWithCompletion({
-                (response: [NSObject : AnyObject]?, error: NSError?) in
-                ...
-            })
+        mailRequest?.execute(completion: {
+            (response: [AnyHashable: Any]?, error: Error?) in
+            if let nsError = error {
+                print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
+                DispatchQueue.main.async(execute: {
+                    self.statusTextView.text = NSLocalizedString("SEND_FAILURE", comment: "")
+                })
+                    
+            }
+
+...            
 
 ```
 
