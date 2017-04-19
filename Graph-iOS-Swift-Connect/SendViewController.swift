@@ -6,6 +6,11 @@
 
 import UIKit
 
+enum GraphResult<T, Error: Swift.Error> {
+    case success(T)
+    case failure(Error)
+}
+
 class SendViewController: UIViewController {
     
     @IBOutlet var disconnectButton: UIBarButtonItem!
@@ -17,6 +22,8 @@ class SendViewController: UIViewController {
     
     @IBOutlet var statusTextView: UITextView!
     
+    var userPicture: UIImage? = nil ;
+    var userPictureUrl: String? = nil;
     
     var authentication: Authentication!
     lazy var graphClient: MSGraphClient = {
@@ -27,18 +34,51 @@ class SendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sendButton.isHidden = true
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         
         getUserInfo()
-        initUI()
+        getUserPicture(forUser: self.emailTextField.text!) { (result) in
+            switch (result){
+            case .success(let result):
+                self.userPicture = result
+                self.uploadPictureToOneDrive(uploadFile: self.userPicture, with: { (results) in
+                    switch(results){
+                    case .success(let results):
+                        self.userPictureUrl = results
+                        DispatchQueue.main.async(execute: {
+                            self.initUI()
+                        })
+                        break
+                    case .failure(let error):
+                        DispatchQueue.main.async(execute: {
+                            self.statusTextView.text = NSLocalizedString("UPLOAD_TO_ONEDRIVE_FAILURE", comment: error.localizedDescription)
+                        })
+                    }
+                })
+                break
+            case .failure(let error):
+                //get default picture
+                self.userPicture = UIImage(named: "test")
+                
+                DispatchQueue.main.async(execute: {
+                    self.statusTextView.text = NSLocalizedString("PROFILE_PICTURE_FAILURE", comment: error.localizedDescription)
+                })
+
+                break
+            }
+        }
         
     }
     
     func initUI() {
+        
+        
         self.title = NSLocalizedString("GRAPH_TITLE", comment: "")
         self.disconnectButton.title = NSLocalizedString("DISCONNECT", comment: "")
         self.descriptionLabel.text = NSLocalizedString("DESCRIPTION", comment: "")
         self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), for: UIControlState())
+        self.sendButton.isHidden = false
         
     }
     
@@ -57,7 +97,8 @@ extension SendViewController {
     
     @IBAction func sendMail(_ sender: AnyObject) {
         guard let toEmail = self.emailTextField.text else {return}
-        if let message = self.createSampleMessage(to: toEmail) {
+        guard let picUrl = self.userPictureUrl else {return}
+        if let message = self.createSampleMessage(to: toEmail, picLink: picUrl) {
             
             let requestBuilder = graphClient.me().sendMail(with: message, saveToSentItems: false)
             let mailRequest = requestBuilder?.request()
@@ -131,8 +172,84 @@ extension SendViewController {
             }
         }
     }
-
     
+    func uploadPictureToOneDrive(uploadFile image: UIImage?, with completion: @escaping (_ result: GraphResult<String, NSError>) ->Void) {
+        
+        var webUrl: String = ""
+        guard let unwrappedImage = image else {
+            return
+        }
+            
+            
+            let data = UIImageJPEGRepresentation(unwrappedImage, 1.0)
+            
+            
+            self.graphClient
+                .me()
+                .drive()
+                .root()
+                .children()
+                .driveItem("me.png")
+                .contentRequest()
+                .upload(from: data, completion: {
+                    (driveItem: MSGraphDriveItem?, error: Error?) in
+                    if let nsError = error {
+                        print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
+                        DispatchQueue.main.async(execute: {
+                            self.statusTextView.text = NSLocalizedString("UPLOAD_PICTURE_FAILURE", comment: nsError.localizedDescription)
+                        })
+                        
+                        return
+
+                    } else {
+                       webUrl = (driveItem?.webUrl)!
+                       completion(.success(webUrl))
+                    }
+                })
+        }
+
+
+    func getUserPicture(forUser upn: String, with completion: @escaping (_ result: GraphResult<UIImage, NSError>) -> Void) {
+        
+        //Asynchronous Graph call. Closure is invoked after getUserPicture completes. Requires @escaping attribute
+        self.graphClient.me().photoValue().download {
+            (url: URL?, response: URLResponse?, error: Error?) in
+            
+                if let nsError = error {
+                    print(NSLocalizedString("ERROR", comment: ""), nsError.localizedDescription)
+                    DispatchQueue.main.async(execute: {
+                        self.statusTextView.text = NSLocalizedString("GET_PICTURE_FAILURE", comment: nsError.localizedDescription)
+                    })
+
+                    return
+                }
+            
+                guard let picUrl = url else {
+
+                    DispatchQueue.main.async(execute: {
+                        self.statusTextView.text = NSLocalizedString("GET_PICTURE_FAILURE", comment: "User profile picture is nil")
+                    })
+
+                    return
+                }
+            
+                print(picUrl)
+            
+                let picData = NSData(contentsOf: picUrl)
+                let picImage = UIImage(data: picData! as Data)
+            
+                if let validPic = picImage {
+                    completion(.success(validPic))
+                }
+                else {
+                    DispatchQueue.main.async(execute: {
+                        self.statusTextView.text = NSLocalizedString("GET_PICTURE_FAILURE", comment: "Picture data is invalid")
+                    })
+
+                }
+           
+            }
+    }
     /**
      Creates sample email message
      
@@ -140,11 +257,12 @@ extension SendViewController {
      
      - returns: MSGraphMessage object with given recipient. The body is created from EmailBody.html
      */
-    func createSampleMessage(to emailAddress: String) -> MSGraphMessage? {
+    func createSampleMessage(to emailAddress: String, picLink pictureUrl: String) -> MSGraphMessage? {
         let message = MSGraphMessage()
         
         // set recipients
         
+        let _ = self.userPicture
         let toRecipient = MSGraphRecipient()
         let msEmailAddress = MSGraphEmailAddress()
         msEmailAddress.address = emailAddress
@@ -161,10 +279,28 @@ extension SendViewController {
         
         guard let emailBodyFilePath = Bundle.main.path(forResource: "EmailBody", ofType: "html") else {return nil}
         messageBody.content = try! String(contentsOfFile: emailBodyFilePath, encoding: String.Encoding.utf8)
+        messageBody.content = messageBody.content.replacingOccurrences(of: "a href=%s", with: ("a href=" + pictureUrl))
         message.body = messageBody
+        
+
+        if let unwrappedImage = self.userPicture {
+            
+            let fileAttachment = MSGraphFileAttachment()
+
+            let data = UIImageJPEGRepresentation(unwrappedImage, 1.0)
+            
+            fileAttachment.contentType = "image/png"
+            fileAttachment.oDataType = "#microsoft.graph.fileAttachment"
+            fileAttachment.contentBytes = data?.base64EncodedString()
+            fileAttachment.name = "me.png"
+            message.attachments.append(fileAttachment)
+
+
+        }
         
         return message
     }
+    
     
 }
 
