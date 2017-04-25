@@ -22,8 +22,8 @@ class SendViewController: UIViewController {
     
     @IBOutlet var statusTextView: UITextView!
     
-    var userPicture: UIImage? = nil ;
-    var userPictureUrl: String? = nil;
+    var userPicture: UIImage? = nil
+    var userPictureUrl: String? = nil
     
     var authentication: Authentication!
     lazy var graphClient: MSGraphClient = {
