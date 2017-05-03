@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "372174C4CA02CA7F916AA58D6A6B26327D6B7907",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E578364CA79A995DDB1916E193A9960A5CEB2B9B" : 9223372036854775807,
+    "372174C4CA02CA7F916AA58D6A6B26327D6B7907" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F8574656-A779-472B-924B-E7DD0BFFED00",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E578364CA79A995DDB1916E193A9960A5CEB2B9B" : "microsoft-authentication-library-for-objc\/",
+    "372174C4CA02CA7F916AA58D6A6B26327D6B7907" : "ios-swift-connect-sample\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Graph-iOS-Swift-Connect",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Graph-iOS-Swift-Connect.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/microsoftgraph\/ios-swift-connect-sample.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "372174C4CA02CA7F916AA58D6A6B26327D6B7907"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AzureAD\/microsoft-authentication-library-for-objc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E578364CA79A995DDB1916E193A9960A5CEB2B9B"
+    }
+  ]
+}

@@ -47,7 +47,8 @@ class SendViewController: UIViewController {
         super.viewDidLoad()
         self.sendButton.isHidden = true
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
-        
+        self.initUI()
+
         getUserInfo()
         getUserPicture(forUser: self.emailTextField.text!) { (result) in
             switch (result){
@@ -59,7 +60,7 @@ class SendViewController: UIViewController {
                         self.userPictureUrl = results
                         DispatchQueue.main.async(execute: {
                             //Enable the send button
-                            self.initUI()
+                            self.sendButton.isHidden = false
                         })
                         break
                     case .failure(let error):
@@ -76,7 +77,7 @@ class SendViewController: UIViewController {
                 DispatchQueue.main.async(execute: {
                     self.statusTextView.text = NSLocalizedString("PROFILE_PICTURE_FAILURE", comment: error.localizedDescription)
                     //Enable the send button
-                    self.initUI()
+                    self.sendButton.isHidden = false
                 })
                 break
             }
@@ -87,9 +88,8 @@ class SendViewController: UIViewController {
     func initUI() {
         self.title = NSLocalizedString("GRAPH_TITLE", comment: "")
         self.disconnectButton.title = NSLocalizedString("DISCONNECT", comment: "")
-        self.descriptionLabel.text = NSLocalizedString("DESCRIPTION", comment: "")
+        self.descriptionLabel.text = "You're now connected to Microsoft Graph. Tap the button below to send a message from your account using the Microsoft Graph API."
         self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), for: UIControlState())
-        self.sendButton.isHidden = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,6 +122,7 @@ extension SendViewController {
                 }
                 else {
                     DispatchQueue.main.async(execute: {
+                        self.descriptionLabel.text = "Check your inbox. You have a new message :)"
                         self.statusTextView.text = NSLocalizedString("SEND_SUCCESS", comment: "")
                     })
                 }
@@ -164,7 +165,7 @@ extension SendViewController {
                     self.emailTextField.text = userInfo.mail
                     
                     if let displayName = userInfo.displayName {
-                        self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: "") as NSString, displayName) as String
+                        self.headerLabel.text = "Hi " + displayName
                     }
                     else {
                         self.headerLabel.text = NSString(format: NSLocalizedString("HI_USER", comment: "") as NSString, "") as String
