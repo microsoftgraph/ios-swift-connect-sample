@@ -45,6 +45,9 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 ## Code of Interest
 
 All authentication code can be viewed in the **Authentication.swift** file. We use a sample implementation of MSAuthenticationProvider extended from [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) to provide login support for registered native apps, automatic refreshing of access tokens, and logout functionality:
+
+### Authenticate the user
+
 ```swift
         // Set client ID
         NXOAuth2AuthenticationProvider.setClientId(clientId, scopes: scopes)
@@ -74,9 +77,63 @@ All authentication code can be viewed in the **Authentication.swift** file. We u
     }
 
 ```
-
-
 Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendViewcontroller.swift** we can assemble a mail request and send it using the following code:
+
+### Get user profile picture
+
+```swift
+        self.graphClient.me().photoValue().download {
+            (url: URL?, response: URLResponse?, error: Error?) in
+            
+                guard let picUrl = url else {
+                    return
+                }
+            
+                let picData = NSData(contentsOf: picUrl)
+                let picImage = UIImage(data: picData! as Data)
+            
+                if let validPic = picImage {
+                    completion(.success(validPic))
+                }
+            }
+
+```
+### Upload the picture to OneDrive
+
+```swift
+        let data = UIImageJPEGRepresentation(unwrappedImage, 1.0)
+        self.graphClient
+            .me()
+            .drive()
+            .root()
+            .children()
+            .driveItem("me.png")
+            .contentRequest()
+            .upload(from: data, completion: {
+                (driveItem: MSGraphDriveItem?, error: Error?) in
+                if let nsError = error {
+                    return
+                } else {
+                    webUrl = (driveItem?.webUrl)!
+                }
+            })
+
+```
+
+### Attach the picture to a new email message
+
+```swift
+            let fileAttachment = MSGraphFileAttachment()
+            let data = UIImageJPEGRepresentation(unwrappedImage, 1.0)
+            fileAttachment.contentType = "image/png"
+            fileAttachment.oDataType = "#microsoft.graph.fileAttachment"
+            fileAttachment.contentBytes = data?.base64EncodedString()
+            fileAttachment.name = "me.png"
+            message.attachments.append(fileAttachment)
+
+```
+
+### Send the message
 
 ```swift
     let requestBuilder = graphClient.me().sendMail(with: message, saveToSentItems: false)
