@@ -4,6 +4,4 @@
  */
 
 #import <MSGraphSDK.h>
-#import <MSGraphSDKNXOAuth2.h>
-#import <MSAuthConstants.h>
 

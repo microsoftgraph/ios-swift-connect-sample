@@ -8,7 +8,7 @@ import Foundation
 
 struct ApplicationConstants {
     static let clientId = "ENTER_YOUR_CLIENT_ID"
-    static let scopes   = ["https://graph.microsoft.com/Mail.Send", "https://graph.microsoft.com/User.Read", "offline_access"]
+    static let scopes   = ["openid", "profile", "Mail.ReadWrite","mail.send","Files.ReadWrite","User.ReadBasic.All"]
 }
 
 
