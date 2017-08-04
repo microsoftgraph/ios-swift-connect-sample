@@ -6,9 +6,13 @@
 
 import Foundation
 
+
 struct ApplicationConstants {
-    static let clientId = "ENTER_YOUR_CLIENT_ID"
-    static let scopes   = ["openid", "profile", "Mail.ReadWrite","mail.send","Files.ReadWrite","User.ReadBasic.All"]
+    static let clientId = "3700a5ef-cee9-498e-a7e3-cbf701966331"
+    static let scopes   = ["https://graph.microsoft.com/Mail.ReadWrite","https://graph.microsoft.com/mail.send","https://graph.microsoft.com/Files.ReadWrite","https://graph.microsoft.com/User.ReadBasic.All"]
+    static let kAuthority = "https://login.microsoftonline.com/common/v2.0"
+    static let kGraphURI = "https://graph.microsoft.com/v1.0/me/"
+
 }
 
 
@@ -19,3 +23,4 @@ enum MSGraphError: Error {
     case nsErrorType(error: NSError)
 
 }
+

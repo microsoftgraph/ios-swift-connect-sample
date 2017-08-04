@@ -1,58 +1,50 @@
-/*
- * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
- * See LICENSE in the project root for license information.
- */
-
+//
+//  AuthenticationClass.swift
+//  Graph-iOS-Swift-Connect
 
 import Foundation
-import UIKit
 import MSAL
 
-struct Authentication {
-    var authenticationProvider: MSALPublicClientApplication?
-        {
-        get {
-            return MSALPublicClientApplication.init()
+class AuthenticationClass {
+    
+    var authenticationProvider = MSALPublicClientApplication.init()
+    
+    init (clientId: String, authority: String) {
+        do {
+            authenticationProvider = try MSALPublicClientApplication.init(clientId: clientId, authority: authority)
+        } catch  _  {
+            authenticationProvider = MSALPublicClientApplication.init()
         }
     }
-}
-
-
-
-extension Authentication {
-    
-
     /**
-     Authenticates to Microsoft Graph. 
+     Authenticates to Microsoft Graph.
      If a user has previously signed in before and not disconnected, silent log in
-     will take place. 
+     will take place.
      If not, authentication will ask for credentials
      */
     func connectToGraph(withClientId clientId: String,
-                                     scopes: [String],
-                                     completion:@escaping (_ error: MSGraphError?, _ accessToken: String) -> Void)  {
-    
+                        scopes: [String],
+                        completion:@escaping (_ error: MSGraphError?, _ accessToken: String) -> Void)  {
+        
         var accessToken = String()
-        var applicationContext:MSALPublicClientApplication
         do {
-             applicationContext = try MSALPublicClientApplication.init(clientId: clientId)
-
+            
             // We check to see if we have a current logged in user. If we don't, then we need to sign someone in.
             // We throw an interactionRequired so that we trigger the interactive signin.
             
-            if  try applicationContext.users().isEmpty {
+            if  try authenticationProvider.users().isEmpty {
                 throw NSError.init(domain: "MSALErrorDomain", code: MSALErrorCode.interactionRequired.rawValue, userInfo: nil)
             } else {
                 
                 // Acquire a token for an existing user silently
                 
-                try authenticationProvider?.acquireTokenSilent(forScopes: scopes, user: applicationContext.users().first) { (result, error) in
+                try authenticationProvider.acquireTokenSilent(forScopes: scopes, user: authenticationProvider.users().first) { (result, error) in
                     
                     if error == nil {
                         accessToken = (result?.accessToken)!
                         //self.getContentWithToken(withAccessToken: accessToken)
-                        completion(MSGraphError.nsErrorType(error: error! as NSError), accessToken);
-
+                        completion(nil, accessToken);
+                        
                         
                     } else {
                         
@@ -69,17 +61,16 @@ extension Authentication {
             // among other possible reasons.
             
             if error.code == MSALErrorCode.interactionRequired.rawValue {
-                applicationContext = try MSALPublicClientApplication.init()
-
-                applicationContext.acquireToken(forScopes: scopes) { (result, error) in
+                
+                authenticationProvider.acquireToken(forScopes: scopes) { (result, error) in
                     if error == nil {
                         accessToken = (result?.accessToken)!
-                        completion(MSGraphError.nsErrorType(error: error! as NSError), accessToken);
-
+                        completion(nil, accessToken);
+                        
                         
                     } else  {
                         completion(MSGraphError.nsErrorType(error: error! as NSError), "");
-
+                        
                     }
                 }
                 
@@ -89,20 +80,20 @@ extension Authentication {
             
             // This is the catch all error.
             
-            completion(MSGraphError.nsErrorType(error: error as NSError), "");
+            
+            completion(MSGraphError.nsErrorType(error: error as NSError), error.localizedDescription);
             
         }
     }
     func disconnect() {
         
         do {
-            let applicationContext = MSALPublicClientApplication.init()
-            try applicationContext.remove(applicationContext.users().first)
-
+            try authenticationProvider.remove(authenticationProvider.users().first)
+            
         } catch _ {
-
+            
         }
-
+        
     }
-}
 
+}

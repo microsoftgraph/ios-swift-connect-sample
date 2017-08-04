@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9683C8191CE4545000ADD241 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683C8181CE4545000ADD241 /* Authentication.swift */; };
 		968F3AC81CE339AF00EC4DFC /* EmailBody.html in Resources */ = {isa = PBXBuildFile; fileRef = 968F3AC71CE339AF00EC4DFC /* EmailBody.html */; };
 		9697B5951D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */; };
 		96993F381CE13E9200725E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96993F371CE13E9200725E65 /* AppDelegate.swift */; };
@@ -20,6 +19,9 @@
 		96EDF8C21D1C60FB00B6A083 /* testUserArgs.json in Resources */ = {isa = PBXBuildFile; fileRef = 96EDF8C11D1C60FB00B6A083 /* testUserArgs.json */; };
 		96EDF8C41D1C720F00B6A083 /* testAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EDF8C31D1C720F00B6A083 /* testAuthProvider.swift */; };
 		BF8C469C57C839FF7CEA4CA0 /* libPods-Graph-iOS-Swift-Connect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CAAA84DB1595E6551BE7CE8 /* libPods-Graph-iOS-Swift-Connect.a */; };
+		CFD110311F313336001DE4CF /* AuthenticationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD110301F313336001DE4CF /* AuthenticationClass.swift */; };
+		CFF5F17A1F20260D00D01613 /* MSAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF5F1791F20260D00D01613 /* MSAL.framework */; };
+		CFF5F17B1F20260D00D01613 /* MSAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFF5F1791F20260D00D01613 /* MSAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,11 +90,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CFF5F1841F20260E00D01613 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CFF5F17B1F20260D00D01613 /* MSAL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3CAAA84DB1595E6551BE7CE8 /* libPods-Graph-iOS-Swift-Connect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Graph-iOS-Swift-Connect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D0BDAB3B15CA7832337193 /* Pods-Graph-iOS-Swift-Connect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Graph-iOS-Swift-Connect.release.xcconfig"; path = "Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect.release.xcconfig"; sourceTree = "<group>"; };
 		6E4213140B6EC54ADE4337F8 /* Pods-Graph-iOS-Swift-Connect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Graph-iOS-Swift-Connect.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect.debug.xcconfig"; sourceTree = "<group>"; };
-		9683C8181CE4545000ADD241 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		968F3AC71CE339AF00EC4DFC /* EmailBody.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailBody.html; sourceTree = "<group>"; };
 		9697B5921D1B0842004F8396 /* Graph-iOS-Swift-ConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Graph-iOS-Swift-ConnectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9697B5941D1B0843004F8396 /* Graph_iOS_Swift_ConnectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph_iOS_Swift_ConnectTests.swift; sourceTree = "<group>"; };
@@ -110,6 +125,8 @@
 		96EDF8C11D1C60FB00B6A083 /* testUserArgs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testUserArgs.json; sourceTree = "<group>"; };
 		96EDF8C31D1C720F00B6A083 /* testAuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testAuthProvider.swift; sourceTree = "<group>"; };
 		CF8C25C71EB8F45700956A4E /* MSAL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSAL.xcodeproj; path = "Pods/../../microsoft-authentication-library-for-objc/MSAL/MSAL.xcodeproj"; sourceTree = "<group>"; };
+		CFD110301F313336001DE4CF /* AuthenticationClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationClass.swift; sourceTree = "<group>"; };
+		CFF5F1791F20260D00D01613 /* MSAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSAL.framework; path = Carthage/Build/iOS/MSAL.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF8C469C57C839FF7CEA4CA0 /* libPods-Graph-iOS-Swift-Connect.a in Frameworks */,
+				CFF5F17A1F20260D00D01613 /* MSAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +160,7 @@
 		9682B8BD1CEA8A7400EEA064 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				9683C8181CE4545000ADD241 /* Authentication.swift */,
+				CFD110301F313336001DE4CF /* AuthenticationClass.swift */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -199,6 +217,7 @@
 		96993F2B1CE13E9200725E65 = {
 			isa = PBXGroup;
 			children = (
+				CFF5F1791F20260D00D01613 /* MSAL.framework */,
 				CF8C25C71EB8F45700956A4E /* MSAL.xcodeproj */,
 				96993F361CE13E9200725E65 /* Graph-iOS-Swift-Connect */,
 				9697B5931D1B0843004F8396 /* Graph-iOS-Swift-ConnectTests */,
@@ -284,6 +303,8 @@
 				96993F321CE13E9200725E65 /* Resources */,
 				DF691CE7AD6D51319643861B /* [CP] Embed Pods Frameworks */,
 				592737BEEB40E7FC3D103B45 /* [CP] Copy Pods Resources */,
+				CFF5F1841F20260E00D01613 /* Embed Frameworks */,
+				CFF5F1851F2026B700D01613 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -311,6 +332,7 @@
 					};
 					96993F331CE13E9200725E65 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = LRHXLKGK9F;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -437,6 +459,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Graph-iOS-Swift-Connect/Pods-Graph-iOS-Swift-Connect-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CFF5F1851F2026B700D01613 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		DF691CE7AD6D51319643861B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,9 +518,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD110311F313336001DE4CF /* AuthenticationClass.swift in Sources */,
 				96993F541CE1E36500725E65 /* SendViewController.swift in Sources */,
 				96993F381CE13E9200725E65 /* AppDelegate.swift in Sources */,
-				9683C8191CE4545000ADD241 /* Authentication.swift in Sources */,
 				96993F4A1CE1489700725E65 /* ConnectViewController.swift in Sources */,
 				96993F4C1CE1493300725E65 /* ApplicationConstants.swift in Sources */,
 			);
@@ -641,10 +676,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = LRHXLKGK9F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Graph-iOS-Swift-Connect/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-Connect";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-Connect-MSAL";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Graph-iOS-Swift-Connect/Graph-iOS-Swift-Connect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -658,10 +698,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = LRHXLKGK9F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Graph-iOS-Swift-Connect/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-Connect";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.Graph-iOS-Swift-Connect-MSAL";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Graph-iOS-Swift-Connect/Graph-iOS-Swift-Connect-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
