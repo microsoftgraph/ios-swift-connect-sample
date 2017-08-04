@@ -3,5 +3,4 @@
 
 target 'Graph-iOS-Swift-Connect' do 
 pod 'MSGraphSDK' 
-pod 'MSGraphSDK-NXOAuth2Adapter' 
 end

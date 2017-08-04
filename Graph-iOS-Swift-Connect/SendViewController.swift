@@ -22,10 +22,13 @@ class SendViewController: UIViewController {
     
     @IBOutlet var statusTextView: UITextView!
     
+    var userMobilePhone: String? = nil
+    var userSchools: [Any]? = nil
+    
     var userPicture: UIImage? = nil
     var userPictureUrl: String? = nil
     
-    var authentication: Authentication!
+    var authentication: AuthenticationClass!
     lazy var graphClient: MSGraphClient = {
         
         let client = MSGraphClient.defaultClient()
@@ -46,7 +49,7 @@ class SendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sendButton.isHidden = true
-        MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
+        MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider as! MSAuthenticationProvider)
         self.initUI()
 
         getUserInfo()
@@ -162,7 +165,18 @@ extension SendViewController {
                     return
                 }
                 DispatchQueue.main.async(execute: {
-                    self.emailTextField.text = userInfo.mail
+                    
+                    if let userEmailAddress = userInfo.mail {
+                        self.emailTextField.text = userEmailAddress
+                    }
+                    
+                    if let MobilePhone = userInfo.mobilePhone {
+                        self.userMobilePhone = MobilePhone
+                    }
+                    
+                    if let schools = userInfo.schools {
+                        self.userSchools = schools;
+                    }
                     
                     if let displayName = userInfo.displayName {
                         self.headerLabel.text = "Hi " + displayName

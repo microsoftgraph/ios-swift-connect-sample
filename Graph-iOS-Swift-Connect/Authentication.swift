@@ -5,17 +5,23 @@
 
 
 import Foundation
+import UIKit
+import MSAL
 
 struct Authentication {
-    var authenticationProvider: NXOAuth2AuthenticationProvider?
+    var authenticationProvider: MSALPublicClientApplication?
         {
         get {
-            return NXOAuth2AuthenticationProvider.sharedAuth()
+            return MSALPublicClientApplication.init()
         }
     }
 }
 
+
+
 extension Authentication {
+    
+
     /**
      Authenticates to Microsoft Graph. 
      If a user has previously signed in before and not disconnected, silent log in
@@ -24,32 +30,79 @@ extension Authentication {
      */
     func connectToGraph(withClientId clientId: String,
                                      scopes: [String],
-                                     completion:@escaping (_ error: MSGraphError?) -> Void) {
+                                     completion:@escaping (_ error: MSGraphError?, _ accessToken: String) -> Void)  {
     
-        // Set client ID
-        NXOAuth2AuthenticationProvider.setClientId(clientId, scopes: scopes)
-        
-        // Try silent log in. This will attempt to sign in if there is a previous successful
-        // sign in user information.
-        if NXOAuth2AuthenticationProvider.sharedAuth().loginSilent() == true {
-            completion(nil)
-        }
-        // Otherwise, present log in controller.
-        else {
-            NXOAuth2AuthenticationProvider.sharedAuth()
-                .login(with: nil) { (error: Error?) in
+        var accessToken = String()
+        var applicationContext:MSALPublicClientApplication
+        do {
+             applicationContext = try MSALPublicClientApplication.init(clientId: clientId)
+
+            // We check to see if we have a current logged in user. If we don't, then we need to sign someone in.
+            // We throw an interactionRequired so that we trigger the interactive signin.
+            
+            if  try applicationContext.users().isEmpty {
+                throw NSError.init(domain: "MSALErrorDomain", code: MSALErrorCode.interactionRequired.rawValue, userInfo: nil)
+            } else {
+                
+                // Acquire a token for an existing user silently
+                
+                try authenticationProvider?.acquireTokenSilent(forScopes: scopes, user: applicationContext.users().first) { (result, error) in
                     
-                    if let nserror = error {
-                        completion(MSGraphError.nsErrorType(error: nserror as NSError))
+                    if error == nil {
+                        accessToken = (result?.accessToken)!
+                        //self.getContentWithToken(withAccessToken: accessToken)
+                        completion(MSGraphError.nsErrorType(error: error! as NSError), accessToken);
+
+                        
+                    } else {
+                        
+                        //"Could not acquire token silently: \(error ?? "No error information" as! Error )"
+                        completion(MSGraphError.nsErrorType(error: error! as NSError), "");
+                        
                     }
-                    else {
-                        completion(nil)
-                    }
+                }
             }
+        }  catch let error as NSError {
+            
+            // interactionRequired means we need to ask the user to sign-in. This usually happens
+            // when the user's Refresh Token is expired or if the user has changed their password
+            // among other possible reasons.
+            
+            if error.code == MSALErrorCode.interactionRequired.rawValue {
+                applicationContext = try MSALPublicClientApplication.init()
+
+                applicationContext.acquireToken(forScopes: scopes) { (result, error) in
+                    if error == nil {
+                        accessToken = (result?.accessToken)!
+                        completion(MSGraphError.nsErrorType(error: error! as NSError), accessToken);
+
+                        
+                    } else  {
+                        completion(MSGraphError.nsErrorType(error: error! as NSError), "");
+
+                    }
+                }
+                
+            }
+            
+        } catch {
+            
+            // This is the catch all error.
+            
+            completion(MSGraphError.nsErrorType(error: error as NSError), "");
+            
         }
     }
-    
     func disconnect() {
-        NXOAuth2AuthenticationProvider.sharedAuth().logout()
+        
+        do {
+            let applicationContext = MSALPublicClientApplication.init()
+            try applicationContext.remove(applicationContext.users().first)
+
+        } catch _ {
+
+        }
+
     }
 }
+
