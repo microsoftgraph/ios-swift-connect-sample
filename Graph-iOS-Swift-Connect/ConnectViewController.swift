@@ -18,7 +18,7 @@ class ConnectViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("GRAPH_TITLE", comment: "")
-        connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), for: UIControlState())
+        connectButton.setTitle(NSLocalizedString("Connect to Office 365", comment: ""), for: UIControlState())
     }
     
 
