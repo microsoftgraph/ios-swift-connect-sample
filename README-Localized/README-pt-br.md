@@ -5,7 +5,7 @@ O Microsoft Graph é um ponto de extremidade unificado para acessar dados, rela�
 > Observação: Experimente a página [Portal de Registro de Aplicativos do Microsoft Graph](https://graph.microsoft.io/en-us/app-registration) que simplifica o registro para que você possa executar este exemplo com mais rapidez.
  
 ## <a name="prerequisites"></a>Pré-requisitos
-* [Xcode](https://developer.apple.com/xcode/downloads/) da Apple – Atualmente, este exemplo foi testado e é compatível na versão 7.3.1 do Xcode.
+* [Xcode](https://developer.apple.com/xcode/downloads/) da Apple – Atualmente, este exemplo é compatível e testado na versão 7.3.1 do Xcode.
 * Instalação do [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html) como um gerente de dependências.
 * Uma conta de email comercial ou pessoal da Microsoft como o Office 365, ou outlook.com, hotmail.com, etc. Inscreva-se em uma [Assinatura do Office 365 para Desenvolvedor](https://aka.ms/devprogramsignup) que inclua os recursos necessários para começar a criar aplicativos do Office 365.
 
@@ -13,7 +13,6 @@ O Microsoft Graph é um ponto de extremidade unificado para acessar dados, rela�
 * Uma ID de cliente do aplicativo registrado no [Portal de Registro de Aplicativos do Microsoft Graph](https://graph.microsoft.io/en-us/app-registration)
 * Para realizar solicitações de autenticação, um **MSAuthenticationProvider** deve ser fornecido para autenticar solicitações HTTPS com um token de portador OAuth 2.0 apropriado. Usaremos [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) para uma implementação de exemplo de MSAuthenticationProvider que pode ser usado para iniciar rapidamente o projeto. Para saber mais, confira a seção abaixo **Código de Interesse**
 
->**Observação:** o exemplo foi testado no Xcode 7.3.1. Este exemplo ainda não é compatível com Xcode 8 e iOS10, que usam a estrutura Swift 3.0.
        
 ## <a name="running-this-sample-in-xcode"></a>Executando este exemplo em Xcode
 

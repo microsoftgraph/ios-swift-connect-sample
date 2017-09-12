@@ -22,13 +22,10 @@ class SendViewController: UIViewController {
     
     @IBOutlet var statusTextView: UITextView!
     
-    var userMobilePhone: String? = nil
-    var userSchools: [Any]? = nil
-    
     var userPicture: UIImage? = nil
     var userPictureUrl: String? = nil
     
-    var authentication: AuthenticationClass!
+    var authentication: Authentication!
     lazy var graphClient: MSGraphClient = {
         
         let client = MSGraphClient.defaultClient()
@@ -49,7 +46,7 @@ class SendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sendButton.isHidden = true
-        MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider as! MSAuthenticationProvider)
+        MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.initUI()
 
         getUserInfo()
@@ -139,8 +136,6 @@ extension SendViewController {
 extension SendViewController {
     func disconnect() {
         authentication.disconnect()
-        
-        //Returned UIViewController is not used. Compiler warning should be ignored
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -167,18 +162,7 @@ extension SendViewController {
                     return
                 }
                 DispatchQueue.main.async(execute: {
-                    
-                    if let userEmailAddress = userInfo.mail {
-                        self.emailTextField.text = userEmailAddress
-                    }
-                    
-                    if let MobilePhone = userInfo.mobilePhone {
-                        self.userMobilePhone = MobilePhone
-                    }
-                    
-                    if let schools = userInfo.schools {
-                        self.userSchools = schools;
-                    }
+                    self.emailTextField.text = userInfo.mail
                     
                     if let displayName = userInfo.displayName {
                         self.headerLabel.text = "Hi " + displayName
