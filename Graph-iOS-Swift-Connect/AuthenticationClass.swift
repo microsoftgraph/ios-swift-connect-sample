@@ -22,7 +22,7 @@ class AuthenticationClass {
      will take place.
      If not, authentication will ask for credentials
      */
-    func connectToGraph(withClientId clientId: String,
+    internal func connectToGraph(withClientId clientId: String,
                         scopes: [String],
                         completion:@escaping (_ error: MSGraphError?, _ accessToken: String) -> Void)  {
         
@@ -85,7 +85,7 @@ class AuthenticationClass {
             
         }
     }
-    func disconnect() {
+    internal func disconnect() {
         
         do {
             try authenticationProvider.remove(authenticationProvider.users().first)
