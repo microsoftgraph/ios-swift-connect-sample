@@ -17,7 +17,7 @@ class ConnectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("GRAPH_TITLE", comment: "")
+        title = NSLocalizedString("Microsoft Graph Connect", comment: "")
         connectButton.setTitle(NSLocalizedString("CONNECT", comment: ""), for: UIControlState())
     }
     

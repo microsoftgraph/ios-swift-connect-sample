@@ -86,7 +86,7 @@ class SendViewController: UIViewController {
     }
     
     func initUI() {
-        self.title = NSLocalizedString("GRAPH_TITLE", comment: "")
+        self.title = NSLocalizedString("Microsoft Graph Connect", comment: "")
         self.disconnectButton.title = NSLocalizedString("DISCONNECT", comment: "")
         self.descriptionLabel.text = "You're now connected to Microsoft Graph. Tap the button below to send a message from your account using the Microsoft Graph API."
         self.sendButton.setTitle(NSLocalizedString("SEND", comment: ""), for: UIControlState())
