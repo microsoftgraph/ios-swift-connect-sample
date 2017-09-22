@@ -8,7 +8,7 @@ import Foundation
 
 struct ApplicationConstants {
     static let clientId = "Enter_Client_Id_Here"
-    static let scopes   = ["openid", "profile", "Mail.ReadWrite","mail.send","Files.ReadWrite","User.ReadBasic.All"]
+    static let scopes   = ["mail.send","Files.ReadWrite","User.ReadBasic.All"]
 }
 
 

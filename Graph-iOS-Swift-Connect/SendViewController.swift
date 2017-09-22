@@ -49,40 +49,40 @@ class SendViewController: UIViewController {
         MSGraphClient.setAuthenticationProvider(authentication.authenticationProvider)
         self.initUI()
 
-        getUserInfo()
-        getUserPicture(forUser: self.emailTextField.text!) { (result) in
-            switch (result){
-            case .success(let result):
-                self.userPicture = result
-                self.uploadPictureToOneDrive(uploadFile: self.userPicture, with: { (results) in
-                    switch(results){
-                    case .success(let results):
-                        self.userPictureUrl = results
-                        DispatchQueue.main.async(execute: {
-                            //Enable the send button
-                            self.sendButton.isHidden = false
-                        })
-                        break
-                    case .failure(let error):
-                        DispatchQueue.main.async(execute: {
-                            self.statusTextView.text = NSLocalizedString("UPLOAD_TO_ONEDRIVE_FAILURE", comment: error.localizedDescription)
-                        })
-                    }
-                })
-                break
-            case .failure(let error):
-                //get default picture
-                self.userPicture = UIImage(named: "test")
-                
-                DispatchQueue.main.async(execute: {
-                    self.statusTextView.text = NSLocalizedString("PROFILE_PICTURE_FAILURE", comment: error.localizedDescription)
-                    //Enable the send button
-                    self.sendButton.isHidden = false
-                })
-                break
+        getUserInfo() {(grapUser) in
+            
+            DispatchQueue.main.async(execute: {
+                //Enable the send button
+                self.sendButton.isHidden = false
+            })
+
+            self.getUserPicture(forUser: self.emailTextField.text!) { (result) in
+                switch (result){
+                case .success(let result):
+                    self.userPicture = result
+                    self.uploadPictureToOneDrive(uploadFile: self.userPicture, with: { (results) in
+                        switch(results){
+                        case .success(let results):
+                            self.userPictureUrl = results
+                            break
+                        case .failure(let error):
+                            DispatchQueue.main.async(execute: {
+                                self.statusTextView.text = NSLocalizedString("UPLOAD_TO_ONEDRIVE_FAILURE", comment: error.localizedDescription)
+                            })
+                        }
+                    })
+                    break
+                case .failure(let error):
+                    //get default picture
+                    self.userPicture = UIImage(named: "test")
+                    
+                    DispatchQueue.main.async(execute: {
+                        self.statusTextView.text = NSLocalizedString("PROFILE_PICTURE_FAILURE", comment: error.localizedDescription)
+                    })
+                    break
+                }
             }
         }
-        
     }
     
     func initUI() {
@@ -142,7 +142,7 @@ extension SendViewController {
     /**
      Fetches user information such as mail and display name
      */
-    func getUserInfo() {
+    func getUserInfo(with completion: @escaping (_ grapUser: MSGraphUser) ->Void){
         self.sendButton.isEnabled = false
         self.statusTextView.text = NSLocalizedString("LOADING_USER_INFO", comment: "")
         
@@ -162,7 +162,7 @@ extension SendViewController {
                     return
                 }
                 DispatchQueue.main.async(execute: {
-                    self.emailTextField.text = userInfo.mail
+                    self.emailTextField.text = userInfo.userPrincipalName
                     
                     if let displayName = userInfo.displayName {
                         self.headerLabel.text = "Hi " + displayName
@@ -174,6 +174,7 @@ extension SendViewController {
                     self.statusTextView.text = NSLocalizedString("USER_INFO_LOAD_SUCCESS", comment: "")
                     self.sendButton.isEnabled = true
                 })
+                completion(userInfo)
             }
         }
     }
