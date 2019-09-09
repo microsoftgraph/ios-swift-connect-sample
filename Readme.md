@@ -11,7 +11,7 @@ extensions:
   - Microsoft Graph
   - Microsoft identity platform
   services:
-  - Office 365
+  - Office 365 
   - Microsoft identity platform
   - Users
   platforms:
