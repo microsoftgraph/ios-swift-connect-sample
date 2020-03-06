@@ -1,23 +1,3 @@
----
-page_type: sample
-products:
-- office-365
-- ms-graph
-languages:
-- swift
-extensions:
-  contentType: samples
-  technologies:
-  - Microsoft Graph
-  - Microsoft identity platform
-  services:
-  - Office 365 
-  - Microsoft identity platform
-  - Users
-  platforms:
-  - iOS
-  createdDate: 5/12/2016 8:23:10 AM
----
 # Office 365 Connect Sample for iOS (Swift) Using the Microsoft Graph SDK
 
 Microsoft Graph is a unified endpoint for accessing data, relationships and insights that come from the Microsoft Cloud. This sample shows how to connect and authenticate to it, and then call mail and user APIs through the [Microsoft Graph SDK for iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
